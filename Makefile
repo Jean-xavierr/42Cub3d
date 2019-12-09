@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2019/12/09 15:07:34 by jereligi         ###   ########.fr        #
+#    Updated: 2019/12/09 17:44:26 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,11 @@ NAME = Cub3D
 
 PATH = ./srcs/
 
-SRCS =	main.c \
+SRCS =	Cub3d.c \
 		ft_read_map.c \
-		ft_strlen.c \
-		ft_strjoin_point.c \
+		ft_check_info.c \
+		ft_error.c \
+		ft_utils.c \
 		ft_split.c \
 		get_next_line.c \
 		get_next_line_utils.c \

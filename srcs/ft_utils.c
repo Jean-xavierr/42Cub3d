@@ -1,16 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_point.c                                 :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/09 14:31:32 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/09 14:58:20 by jereligi         ###   ########.fr       */
+/*   Created: 2019/12/09 14:33:55 by jereligi          #+#    #+#             */
+/*   Updated: 2019/12/09 17:08:46 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int		ft_strlen(char *s)
+{
+	int		i;
+	
+	i = 0;
+	if (s == NULL)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr(char *s)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
+		write(1, &s[i++], 1);
+}
 
 char		*ft_strjoin_point(char *s1, char *s2)
 {

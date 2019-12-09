@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_check_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/09 14:33:55 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/09 14:58:03 by jereligi         ###   ########.fr       */
+/*   Created: 2019/12/09 16:53:43 by jereligi          #+#    #+#             */
+/*   Updated: 2019/12/09 17:42:42 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		ft_strlen(char *s)
+int		ft_check_extension(char *s)
 {
 	int		i;
-	
+	int		n;
+	char	*cub;
+
 	i = 0;
-	if (s == NULL)
-		return (0);
+	cub = ".cub";
 	while (s[i])
+	{
+		n = 0;
+		while (s[i + n] == cub[n] && cub[n])
+		{
+			if (s[i + n + 1] == '\0' && cub[n + 1] == '\0')
+				return (1);
+			n++;
+		}
 		i++;
-	return (i);
+	}
+	return (0);
 }
