@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/09 13:41:47 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 16:52:41 by jereligi         ###   ########.fr       */
+/*   Created: 2019/12/10 15:57:23 by jereligi          #+#    #+#             */
+/*   Updated: 2019/12/10 15:57:26 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-
-int		ft_check_extension(char *s)
+char	*ft_strcpy(char *dest, char *src)
 {
-	int		i;
-	int		n;
-	char	*cub;
+	int i;
 
 	i = 0;
-	cub = ".cub";
-	while (s[i])
+	while (src[i] != '\0')
 	{
-		n = 0;
-		while (s[i + n] == cub[n] && cub[n])
-		{
-			if (s[i + n + 1] == '\0' && cub[n + 1] == '\0')
-				return (1);
-			n++;
-		}
+		dest[i] = src[i];
 		i++;
 	}
-	return (0);
-}
-
-int		ft_parsing_info()
-{
-	return (1);
+	dest[i] = '\0';
+	return (dest);
 }

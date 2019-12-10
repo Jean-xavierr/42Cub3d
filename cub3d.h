@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 14:49:35 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 16:52:33 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef	struct		s_info
 {
 	int		rx;
 	int		ry;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*S;
+	char	north_t[256];
+	char	south_t[256];
+	char	west_t[256];
+	char	east_t[256];
+	char	sprite_t[256];
 	int		colorf;
 	int		colorc;
 }					t_info;
@@ -47,6 +47,9 @@ int		ft_parsing_info(char *s, t_info *info_map);
 
 /* --> ft_get_info.c <-- */
 void	ft_get_resolution(char *s, t_info *info_map);
+void	ft_get_texture_path(char *s, t_info *info_map);
+void	ft_get_color(char *s, t_info *info_map);
+int		ft_get_info_map(char *s, t_info *info_map);
 
 /* --> ft_error.c <-- */
 void	ft_error(int error);
@@ -64,6 +67,9 @@ void	ft_putstr(char *s);
 int		ft_is_wall(char c);
 int		ft_atoi(char *s);
 char	*ft_strjoin_point(char *s1, char *s2);
+
+/* --> ft_strcpy.c <-- */
+char	*ft_strcpy(char *dest, char *src);
 
 /* --> ft_get_next_line <-- */
 int		get_next_line(int fd, char **line);

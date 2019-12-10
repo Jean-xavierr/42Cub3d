@@ -12,5 +12,12 @@ int		main(int ac, char **av)
 		ft_init_struct_infomap(&info_map);
 		ft_read_management(av[ac - 1], &info_map);
 	}
+	printf("texture |%s|\n", info_map.north_t);
+	printf("texture |%s|\n", info_map.south_t);
+	printf("texture |%s|\n", info_map.west_t);
+	printf("texture |%s|\n", info_map.east_t);
+	printf("texture |%s|\n", info_map.sprite_t);
+	printf("colorf |%d|\n", info_map.colorf);
+	printf("colorc |%d|\n", info_map.colorc);
 	return (0);
 }

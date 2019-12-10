@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:09 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 14:45:45 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 16:52:37 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		ft_read_map(char *s, t_info *info_map)
 		return (ft_error(2));
 	while (((i = get_next_line(fd, &line)) != 0) && !ft_is_wall(line[0]))
 	{
-		if (!ft_parsing_info(line, info_map))
+		if (!ft_get_info_map(line, info_map))
 			return ;
 		free(line);
 	}
