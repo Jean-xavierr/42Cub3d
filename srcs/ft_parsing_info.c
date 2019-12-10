@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_info.c                                    :+:      :+:    :+:   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/09 16:53:43 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/09 17:42:42 by jereligi         ###   ########.fr       */
+/*   Created: 2019/12/09 13:41:47 by jereligi          #+#    #+#             */
+/*   Updated: 2019/12/10 11:41:20 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,33 @@ int		ft_check_extension(char *s)
 		i++;
 	}
 	return (0);
+}
+
+int		ft_parsing_info(char *s)
+{
+	printf("|%s| : ", s);
+	if (s[0] == 'R')
+		printf("OK\n");
+	else if (s[0] == 'N' && s[1] == 'O')
+		printf("OK\n");
+	else if (s[0] == 'S' && s[1] == 'O')
+		printf("OK\n");
+	else if (s[0] == 'W' && s[1] == 'E')
+		printf("OK\n");
+	else if (s[0] == 'E' && s[1] == 'A')
+		printf("OK\n");
+	else if (s[0] == 'S' && s[1] == ' ')
+		printf("OK\n");
+	else if (s[0] == 'F')
+		printf("OK\n");
+	else if (s[0] == 'C')
+		printf("OK\n");
+	else if (s[0] == '\n' || s[0] == '\0')
+		printf("vide\n");
+	else
+	{
+		ft_error(3);
+		return (0);
+	}
+	return (1);
 }

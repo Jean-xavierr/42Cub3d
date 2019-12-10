@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:33:55 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/09 17:08:46 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 10:02:02 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,14 @@ void	ft_putstr(char *s)
 		write(1, &s[i++], 1);
 }
 
-char		*ft_strjoin_point(char *s1, char *s2)
+int		ft_is_wall(char c)
+{
+	if (c == '1')
+		return (1);
+	return (0);
+}
+
+char	*ft_strjoin_point(char *s1, char *s2)
 {
 	int		i;
 	int		n;
