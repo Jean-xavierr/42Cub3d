@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 18:10:12 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:16:46 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_get_color(char *s, t_info *info_map);
 int		ft_get_info_map(char *s, t_info *info_map);
 
 /* --> ft_error.c <-- */
-void	ft_error(int error);
+void	ft_error(int error, char *s);
 
 /* --> ft_init.c <-- */
 void	ft_init_struct_infomap(t_info *info_map);

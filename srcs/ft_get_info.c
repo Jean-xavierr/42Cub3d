@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:49:26 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 17:11:06 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:17:05 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_get_info_map(char *s, t_info *info_map)
 		printf("vide\n");
 	else
 	{
-		ft_error(3);
+		ft_error(3, s);
 		return (0);
 	}
 	return (1);
