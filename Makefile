@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2019/12/10 16:52:35 by jereligi         ###   ########.fr        #
+#    Updated: 2019/12/10 18:10:10 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Cub3D
 
 PATH = ./srcs/
 
-SRCS =	Cub3d.c \
+SRCS =	cub3d.c \
 		ft_read_map.c \
 		ft_parsing_info.c \
 		ft_get_info.c \

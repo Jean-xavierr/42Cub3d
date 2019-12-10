@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 16:52:33 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:10:12 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 /* --> structure <-- */
 typedef	struct		s_info
 {
+	char	**map;
 	int		rx;
 	int		ry;
 	char	north_t[256];
