@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2019/12/10 10:15:09 by jereligi         ###   ########.fr        #
+#    Updated: 2019/12/10 14:48:05 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ PATH = ./srcs/
 SRCS =	Cub3d.c \
 		ft_read_map.c \
 		ft_parsing_info.c \
+		ft_get_info.c \
 		ft_error.c \
+		ft_init.c \
 		ft_utils.c \
 		ft_split.c \
 		get_next_line.c \

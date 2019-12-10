@@ -6,13 +6,13 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:09 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 10:40:23 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 14:45:45 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		ft_read_map(char *s)
+void		ft_read_map(char *s, t_info *info_map)
 {
 	int		i;
 	int		fd;
@@ -27,7 +27,7 @@ void		ft_read_map(char *s)
 		return (ft_error(2));
 	while (((i = get_next_line(fd, &line)) != 0) && !ft_is_wall(line[0]))
 	{
-		if (!ft_parsing_info(line))
+		if (!ft_parsing_info(line, info_map))
 			return ;
 		free(line);
 	}
@@ -45,10 +45,10 @@ void		ft_read_map(char *s)
 		printf("[%s]\n", map[i++]);
 }
 
-void		ft_read_management(char *s)
+void		ft_read_management(char *s, t_info *info_map)
 {
 	if (ft_check_extension(s) == 0)
 		return (ft_error(1));
 	else
-		ft_read_map(s);
+		ft_read_map(s, info_map);
 }

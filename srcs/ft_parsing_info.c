@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 13:41:47 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 11:41:20 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 14:45:39 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int		ft_check_extension(char *s)
 	return (0);
 }
 
-int		ft_parsing_info(char *s)
+int		ft_parsing_info(char *s, t_info *info_map)
 {
 	printf("|%s| : ", s);
 	if (s[0] == 'R')
-		printf("OK\n");
+		ft_get_resolution(s, info_map);
 	else if (s[0] == 'N' && s[1] == 'O')
 		printf("OK\n");
 	else if (s[0] == 'S' && s[1] == 'O')
