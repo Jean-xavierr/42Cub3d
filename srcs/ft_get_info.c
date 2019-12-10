@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:49:26 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 16:52:28 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 17:11:06 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_get_resolution(char *s, t_info *info_map)
 void	ft_get_texture_path(char *s, t_info *info_map)
 {
 	int	i;
-	
+
 	i = 2;
 	while (s[i] == ' ')
 		i++;
@@ -47,7 +47,7 @@ int		ft_convert_rgb_to_integer(char *s)
 	int		i;
 	int		n;
 	int		nb[4];
-	
+
 	i = 1;
 	n = 0;
 	while (s[i])
@@ -60,7 +60,7 @@ int		ft_convert_rgb_to_integer(char *s)
 			while (s[i] >= '0' && s[i] <= '9')
 				i++;
 		}
-		i++;  
+		i++;
 	}
 	nb[n] = 65536 * nb[0] + 256 * nb[1] + nb[2];
 	return (nb[n]);
@@ -71,7 +71,7 @@ void	ft_get_color(char *s, t_info *info_map)
 	if (s[0] == 'F')
 		info_map->colorf = ft_convert_rgb_to_integer(s);
 	else
-		info_map->colorc = ft_convert_rgb_to_integer(s);	
+		info_map->colorc = ft_convert_rgb_to_integer(s);
 }
 
 int		ft_get_info_map(char *s, t_info *info_map)

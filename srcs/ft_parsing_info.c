@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 13:41:47 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 16:52:41 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 17:06:59 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_check_extension(char *s)
 	return (0);
 }
 
-int		ft_parsing_info()
+/*int		ft_parsing_info()
 {
 	return (1);
-}
+}*/
