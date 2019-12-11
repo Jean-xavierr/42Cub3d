@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 12:27:53 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 14:49:16 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ typedef	struct		s_info
 void	ft_read_map(char *s, t_info *info_map);
 void	ft_read_management(char *s, t_info *info_map);
 
-/* --> ft_parsing_info.c <-- */
+/* --> ft_parse_info.c <-- */
 int		ft_check_extension(char *s);
-int		ft_parsing_info(t_info *info_map);
-void	ft_parsing_management(t_info *info_map);
+int		ft_parse_info(t_info *info_map);
+void	ft_parse_management(t_info *info_map);
 
-/* --> ft_parsing_map.c <-- */
-int		ft_parsing_map_line_updown(t_info *info_map);
-int		ft_parsing_map_line_middle(t_info *info_map);
+/* --> ft_parse_map.c <-- */
+int		ft_parse_map_line_updown(t_info *info_map);
+int		ft_parse_map_line_between(t_info *info_map);
 
 /* --> ft_get_info.c <-- */
 void	ft_get_resolution(char *s, t_info *info_map);

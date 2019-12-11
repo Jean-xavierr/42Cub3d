@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing_map.c                                   :+:      :+:    :+:   */
+/*   ft_parse_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/11 12:04:02 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 14:28:58 by jereligi         ###   ########.fr       */
+/*   Created: 2019/12/11 14:44:55 by jereligi          #+#    #+#             */
+/*   Updated: 2019/12/11 14:49:26 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		ft_parsing_map_line_updown(t_info *info_map)
+int		ft_parse_map_line_updown(t_info *info_map)
 {
 	int		i;
 	int		n;
@@ -39,7 +39,7 @@ int		ft_parsing_map_line_updown(t_info *info_map)
 	return (1);
 }
 
-int		ft_parsing_map_line_middle(t_info *info_map)
+int		ft_parse_map_line_between(t_info *info_map)
 {
 	int		line;
 	int		len_l1;

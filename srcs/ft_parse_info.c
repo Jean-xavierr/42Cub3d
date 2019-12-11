@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   ft_parse_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/09 13:41:47 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 13:35:01 by jereligi         ###   ########.fr       */
+/*   Created: 2019/12/11 14:45:56 by jereligi          #+#    #+#             */
+/*   Updated: 2019/12/11 14:49:20 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_check_extension(char *s)
 	return (0);
 }
 
-int		ft_parsing_info(t_info *info_map)
+int		ft_parse_info(t_info *info_map)
 {
 	if (info_map->rx <= 0 || info_map->ry <= 0)
 	{
@@ -50,18 +50,18 @@ int		ft_parsing_info(t_info *info_map)
 	return (1);
 }
 
-void	ft_parsing_management(t_info *info_map)
+void	ft_parse_management(t_info *info_map)
 {
 	ft_putstr("parsing :\n");
-	if (!ft_parsing_info(info_map))
+	if (!ft_parse_info(info_map))
 		ft_putstr("ERROR INFO");
 	else
 		ft_putstr("INFO OK\n");
-	if (ft_parsing_map_line_updown(info_map))
+	if (ft_parse_map_line_updown(info_map))
 		ft_putstr("MAP OK\n");
 	else
 		ft_putstr("MAP ERROR\n");
-	if (ft_parsing_map_line_middle(info_map))
+	if (ft_parse_map_line_between(info_map))
 		ft_putstr("Mur ok");
 	else
 		ft_putstr("Mur ko");

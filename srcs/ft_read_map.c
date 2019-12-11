@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:09 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 11:56:00 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 14:49:22 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void		ft_read_management(char *s, t_info *info_map)
 	else
 	{
 		ft_read_map(s, info_map);
-		ft_parsing_management(info_map);
+		ft_parse_management(info_map);
 	}
 }
