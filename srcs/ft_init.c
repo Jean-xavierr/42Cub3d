@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:40:18 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 18:05:38 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 13:35:24 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_init_struct_infomap(t_info *info_map)
 {
+	info_map->len_map = 0;
 	info_map->rx = 0;
 	info_map->ry = 0;
 	info_map->north_t[0] = '\0';
