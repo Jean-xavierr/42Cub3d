@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:09 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 14:49:22 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 15:26:32 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void		ft_read_map(char *s, t_info *info_map)
 		map_tmp = ft_strjoin_point(map_tmp, line);
 		free(line);
 	}
+	free(line);
 	info_map->map = ft_split(map_tmp, '.');
+	free(map_tmp);
 	i = 0;
 	while (info_map->map[i])
 		printf("[%s]\n", info_map->map[i++]);

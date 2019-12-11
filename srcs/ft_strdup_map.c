@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 10:58:15 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 11:04:31 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 15:15:21 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,17 @@ char	*ft_strdup_map(char *s)
 {
 	int		i;
 	int		n;
-	int		len;
 	char	*dest;
 
 	i = 0;
-	len = 0;
+	n = 0;
 	while (s[i])
 	{
 		if (s[i] != ' ')
-			len++;
+			n++;
 		i++;
 	}
-	if (!(dest = (char *)malloc(sizeof(char) * len + 1)))
+	if (!(dest = (char *)malloc(sizeof(char) * n + 1)))
 		return (NULL);
 	i = 0;
 	n = 0;

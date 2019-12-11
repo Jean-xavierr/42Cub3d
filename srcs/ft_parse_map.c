@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:44:55 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 14:49:26 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 15:26:34 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,18 @@ int		ft_parse_map_line_between(t_info *info_map)
 	int		len_l1;
 	int		len_l2;
 	int		len_check;
-	
+
 	line = 1;
 	while (info_map->map[line + 1] != NULL)
-	{		
+	{
 		len_l1 = ft_strlen(info_map->map[line]);
 		len_l2 = ft_strlen(info_map->map[line + 1]);
-		len_check = len_l1 - len_l2;	
+		len_check = len_l1 - len_l2;
 		if (len_check == 0)
 		{
-			if (info_map->map[line][0] != '1' || info_map->map[line][len_l1 - 1] != '1')
+			if (info_map->map[line][0] != '1' ||
+			info_map->map[line][len_l1 - 1] != '1')
 				return (0);
-			/*if (info_map->map[line + 1][0] != '1' || info_map->map[line + 1][len_l2 - 1] != '1')
-				return (0);*/
 		}
 		else if (len_check >= 1)
 		{
@@ -69,26 +68,19 @@ int		ft_parse_map_line_between(t_info *info_map)
 				if (info_map->map[line][len_l1] != '1')
 					return (0);
 				len_l1++;
-			}	
-			if (info_map->map[line + 1][0] != '1' || info_map->map[line + 1][len_l2 - 1] != '1')
-				return (0);
-		}
-		else if (len_check < 0) 
-		{	
-			if (info_map->map[line + 1][0] != '1')
-			{
-				return (0);
 			}
-			len_check *= -1;
-			len_l2 = len_l2 - len_check;
+		}
+		else if (len_check < 0)
+		{
+			if (info_map->map[line + 1][0] != '1')
+				return (0);
+			len_l2 = len_l2 - (len_check * -1);
 			while (info_map->map[line + 1][len_l2])
 			{
 				if (info_map->map[line + 1][len_l2] != '1')
 					return (0);
 				len_l2++;
-			}	
-			if (info_map->map[line][0] != '1' || info_map->map[line][len_l1 - 1] != '1')
-				return (0);
+			}
 		}
 		line++;
 	}
