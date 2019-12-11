@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:09 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 18:19:18 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 11:07:06 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ void		ft_read_map(char *s, t_info *info_map)
 		if (!ft_get_info_map(line, info_map))
 			return ;
 		free(line);
-	}
+	}	
+	line = ft_strdup_map(line);
 	map_tmp = ft_strjoin_point(map_tmp, line);
 	free(line);
 	while ((i = get_next_line(fd, &line)) != 0)
 	{
+		line = ft_strdup_map(line);
 		map_tmp = ft_strjoin_point(map_tmp, line);
 		free(line);
 	}
@@ -48,5 +50,8 @@ void		ft_read_management(char *s, t_info *info_map)
 	if (ft_check_extension(s) == 0)
 		return (ft_error(1, ""));
 	else
+	{
 		ft_read_map(s, info_map);
+		ft_parsing_management(info_map);
+	}
 }

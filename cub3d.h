@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 18:16:46 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 11:07:08 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	ft_read_management(char *s, t_info *info_map);
 
 /* --> ft_parsing_info.c <-- */
 int		ft_check_extension(char *s);
-int		ft_parsing_info(char *s, t_info *info_map);
+int		ft_parsing_info(t_info *info_map);
+void	ft_parsing_management(t_info *info_map);
 
 /* --> ft_get_info.c <-- */
 void	ft_get_resolution(char *s, t_info *info_map);
@@ -68,6 +69,9 @@ void	ft_putstr(char *s);
 int		ft_is_wall(char c);
 int		ft_atoi(char *s);
 char	*ft_strjoin_point(char *s1, char *s2);
+
+/* --> ft_strdup_map.c <-- */
+char	*ft_strdup_map(char *s);
 
 /* --> ft_strcpy.c <-- */
 char	*ft_strcpy(char *dest, char *src);

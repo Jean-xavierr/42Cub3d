@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2019/12/10 18:10:10 by jereligi         ###   ########.fr        #
+#    Updated: 2019/12/11 11:07:02 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	cub3d.c \
 		ft_init.c \
 		ft_utils.c \
 		ft_split.c \
+		ft_strdup_map.c \
 		ft_strcpy.c \
 		get_next_line.c \
 		get_next_line_utils.c \

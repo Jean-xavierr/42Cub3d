@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:04:43 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 18:21:48 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:34:35 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void		ft_error(int error, char *s)
 		ft_putstr("Error: information no correct |");
 		ft_putstr(s);
 		ft_putstr("|\n");
-	}	
+	}
+	else if (error == 4)
+		ft_putstr(s);	
 }

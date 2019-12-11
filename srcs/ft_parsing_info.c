@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 13:41:47 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 18:10:08 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/11 11:07:04 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,26 @@ int		ft_check_extension(char *s)
 	return (0);
 }
 
-/*int		ft_parsing_info()
+int		ft_parsing_info(t_info *info_map)
 {
+	if (info_map->rx <= 0 || info_map->ry <= 0)
+		ft_error(4, "Error: resolution no correct\n");
+	if (info_map->colorf == 0 || info_map->colorc == 0)
+		ft_error(4, "Error: color floor or ceil can < 256\n");
+	//if (!ft_check_open_texture(info_map))
 	return (1);
-}*/
-
-void		ft_parsing_management()
+}
+/*
+int		ft_parsing_map(t_info *info_map)
 {
 
+
+
+
+}
+*/
+void	ft_parsing_management(t_info *info_map)
+{
+	ft_parsing_info(info_map);
+//	ft_parsing_map(info_map);
 }
