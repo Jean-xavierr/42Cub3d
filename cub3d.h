@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/11 14:49:16 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/12/12 13:48:03 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include "includes/get_next_line.h"
-# include "includes/minilibx_opengl/mlx.h"
+# include <mlx.h>
 
 /* --> structure <-- */
 typedef	struct		s_info
@@ -37,7 +37,16 @@ typedef	struct		s_info
 	int		colorc;
 }					t_info;
 
+typedef struct		s_len_map
+{
+	int		l1;
+	int		l2;
+	int		check;
+}					t_len_map;
+
 /* --> Cub3d.c <-- */
+int		ft_map_2D(t_info *info_map);
+
 
 /* --> ft_read_map <-- */
 void	ft_read_map(char *s, t_info *info_map);
@@ -46,11 +55,11 @@ void	ft_read_management(char *s, t_info *info_map);
 /* --> ft_parse_info.c <-- */
 int		ft_check_extension(char *s);
 int		ft_parse_info(t_info *info_map);
-void	ft_parse_management(t_info *info_map);
+void	ft_parse_management(t_info *info_map, t_len_map *len);
 
 /* --> ft_parse_map.c <-- */
 int		ft_parse_map_line_updown(t_info *info_map);
-int		ft_parse_map_line_between(t_info *info_map);
+int		ft_parse_map_line_between(t_info *info_map, t_len_map *len);
 
 /* --> ft_get_info.c <-- */
 void	ft_get_resolution(char *s, t_info *info_map);

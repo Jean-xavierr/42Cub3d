@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2019/12/11 14:49:18 by jereligi         ###   ########.fr        #
+#    Updated: 2019/12/12 13:46:14 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS =	cub3d.c \
 		ft_strcpy.c \
 		get_next_line.c \
 		get_next_line_utils.c \
+		ft_map_2D.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
 
@@ -41,7 +42,7 @@ CFLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(INCLUDES)
-	gcc -o $(NAME) $(OBJ)
+	gcc -o $(NAME) -lm -lmlx -framework OpenGL -framework AppKit $(OBJ)
 
 clean :
 	rm -f $(OBJ)
