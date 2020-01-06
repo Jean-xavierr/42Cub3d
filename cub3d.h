@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/12 13:48:03 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/06 13:18:17 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,24 @@ typedef	struct		s_info
 	int		colorc;
 }					t_info;
 
+typedef struct		s_player
+{
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+}					t_player;
+
+typedef struct		s_mlx
+{
+	void	*ptr;
+	void	*win;
+	void	*img;
+	void	*data_img;
+}					t_mlx;
+
 typedef struct		s_len_map
 {
 	int		l1;
@@ -46,7 +64,6 @@ typedef struct		s_len_map
 
 /* --> Cub3d.c <-- */
 int		ft_map_2D(t_info *info_map);
-
 
 /* --> ft_read_map <-- */
 void	ft_read_map(char *s, t_info *info_map);
@@ -72,6 +89,9 @@ void	ft_error(int error, char *s);
 
 /* --> ft_init.c <-- */
 void	ft_init_struct_infomap(t_info *info_map);
+
+/* --> ft_raycaster <-- */
+void	ft_raycaster(t_info *info);
 
 //  ----------------
 // 	function utils.c

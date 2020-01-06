@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2019/12/12 13:46:14 by jereligi         ###   ########.fr        #
+#    Updated: 2020/01/06 11:05:07 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS =	cub3d.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		ft_map_2D.c \
+		ft_raycaster.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
 
