@@ -30,18 +30,43 @@ typedef	struct		s_mlx
 	int				y;
 }					t_mlx;
 
-int					ft_key_mouve(t_mlx *mlx)
+dd
+typedef struct			s_keyinfo
 {
-	write(1, "a", 1);		
-	return (0);
+	int					foward;
+	int					retreat;
+	int					left;
+	int					right;
+	int					turn_left;
+	int					turn_right;
+}						t_keyinfo
+
+int					ft_key_management(t_mlx)
+{
+
 }
 
-int					ft_get_key(t_mlx *mlx)
+int					ft_keyrelease(int key, t_mlx *mlx)
 {
-	write(1, "b", 1);
-	mlx->x++;
-	mlx->y++;
-	return (1);
+
+}
+
+int					ft_keypress(int key, t_mlx *mlx)
+{
+	if (key == 53)
+		printf("esc");
+	else if (key == 13)
+		printf("forward");
+	else if (key == 1)
+		printf("retreat");
+	else if (key == 0)
+		printf("left");
+	else if (key == 2)
+		printf("right");
+	else if (key == 123)
+		printf("turn left");
+	else if (key == 124)
+		printf("turn  right");
 }
 
 int					main(void)
@@ -56,10 +81,14 @@ int					main(void)
 		return (-1);
 	if ((mlx.win = mlx_new_window(mlx.ptr, 640, 480, "Cub2D")) == NULL)
 		return (-1);
-	mlx_expose_hook(mlx.win, &ft_key_mouve, &mlx);
+	mlx_hook(mlx.win, 2, 1L << 0, ft_keypress, &mlx);
+	mlx_hook(mlx.win, 3, 1L << 1, ft_keyrelease, &mlx);
+	//mlx_hook(mlx.win, 17, 1L << 17, ft_destroy_window, &mlx);
 	mlx_loop(mlx.ptr);
 	return (0);
 }
+
+//https://code.woboq.org/qt5/include/X11/X.h.html
 
 /*	key_press (2, 0)
 	key_release (3 , 0)
