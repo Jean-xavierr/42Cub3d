@@ -12,6 +12,62 @@
 
 #include "../cub3d.h"
 
+/*
+void		ft_mini_map(t_info *info_map, int x, int y, int color)
+{
+	int		n2;
+	int		n3;
+	int		n4;
+	int 	line;
+	int		size_line;
+
+	n2 = 0;
+	n4 = 0;
+
+	t_x = (info_map->rx / 4) / taille de la ligne x;
+	t_y = (info_map->ry / 4) / taille de la ligne y;
+	size_line = img->size_line / 4;
+	while (n2 < (x * t_x))
+	{
+		line = line + size_line;
+		n2++;
+	}
+	n2 = 0;
+	n4 = (y + 1) * t_y;
+	while (n2 < t_x)
+	{
+		n3 = y * t_y;
+		while (n3 < n4)
+		{
+i			*(int *)(&info->img.ptr[(line + n3) * info->img.bpp]) = color;
+			n3++;
+		}
+		line = line + size_line;
+		n2++;
+	}
+}
+*/
+/*
+void	ft_draw_mini_map(t_info *info_map)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	while (x < info_map->rx)
+	{
+		y = 0;
+		while (y < info_map->ry)
+		{
+			if (info_map->map[x][y] == '1')
+				ft_mini_map(info_map, x, y, 16777215);
+			y++;
+		}
+		x++;
+	}
+}*/
+
 int		ft_map_2D(t_info *info_map)
 {
 	void	*mlx_ptr;
@@ -22,14 +78,8 @@ int		ft_map_2D(t_info *info_map)
 	int		pixel;
 	int 	endian;
 	int		i;
-	int		x;
-	int		y;
-	int		n;
 
-	x = 0;
-	y = 0;
 	i = 0;
-	n = 0;
 	img = NULL;
 	if ((mlx_ptr = mlx_init()) == NULL)
 		return (printf("init fail"));
@@ -37,43 +87,16 @@ int		ft_map_2D(t_info *info_map)
 		return (printf("windows fail"));
 	img = mlx_new_image(mlx_ptr, 640, 480);
 	data_img = mlx_get_data_addr(img, &pixel, &size_line, &endian);
-	printf("pixel = %d", pixel);
-	printf("size_line = %d", size_line);
+//	printf("pixel = %d", pixel);
+//	printf("size_line = %d", size_line);
 	// pixel = nombre de bits pour un pixel
 	pixel = pixel / 8;
-//	while (i < ((size_line / pixel) * 480))
-	while (info_map->map[y])
+	while (i < ((size_line / pixel) * info_map->ry))
 	{
-		write(1, "\n", 2);
-		write(1, "Y", 1);
-		while (info_map->map[y][x] != '\0')
-		{
-			if (info_map->map[y][x] == '1')
-			{
-				while (n < 22)
-				{
-					*(int *)&data_img[i * pixel] = 16777215;
-					i++;
-					n++;
-				}
-			}
-			else if (info_map->map[y][x] == '0')
-			{
-				while (n < 22)
-				{
-					*(int *)&data_img[i * pixel] = 000000;
-					i++;
-					n++;
-				}
-			}
-			n = 0;
-			x++;
-			write(1, "X", 2);
-		}
+		*(int *)&data_img[i * pixel] = 16777215;
 		i++;
-		x = 0;
-		y++;
 	}
+	//ft_draw_mini_map(info_map);
 	mlx_put_image_to_window(mlx_ptr, mlx_win, img, 0 , 0);
 	mlx_loop(mlx_ptr);
 	return (0);
