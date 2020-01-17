@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/06 13:18:17 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/17 11:12:27 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	ft_error(int error, char *s);
 
 /* --> ft_init.c <-- */
 void	ft_init_struct_infomap(t_info *info_map);
+
+/* --> ft_fill_map <-- */
+void	ft_fill_map(t_info *info_map, int x, int len_max);
+int		ft_check_len_map(t_info *info_map);
 
 /* --> ft_raycaster <-- */
 void	ft_raycaster(t_info *info);

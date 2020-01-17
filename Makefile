@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2020/01/06 11:05:07 by jereligi         ###   ########.fr        #
+#    Updated: 2020/01/17 10:55:06 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Cub3D
 
 PATH = ./srcs/
 
-SRCS =	cub3d.c \
+SRCS =	Cub3d.c \
 		ft_read_map.c \
 		ft_parse_info.c \
 		ft_parse_map.c \
@@ -28,6 +28,7 @@ SRCS =	cub3d.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		ft_map_2D.c \
+		ft_fill_map.c \
 		ft_raycaster.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
