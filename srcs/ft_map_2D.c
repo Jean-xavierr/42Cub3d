@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/17 14:32:38 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/17 16:00:20 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void		ft_mini_map(t_info *info_map, t_mlx *mlx, int x, int y, int color)
 	n2 = 0;
 	n4 = 0;
 	line = 0;
-	t_x = (info_map->rx / 4) / info_map->len_x;
-	t_y = (info_map->ry / 4) / info_map->len_y;
+	t_x = (info_map->rx / 4) / info_map->len_y;
+	t_y = (info_map->ry / 4) / info_map->len_x;
 	size_line = mlx->size_line / 4;
 	while (n2 < (x * t_x))
 	{
