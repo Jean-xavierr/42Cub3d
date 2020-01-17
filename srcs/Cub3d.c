@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/17 11:03:47 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/17 14:08:21 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		main(int ac, char **av)
 {
 	t_info	info_map;
+	t_mlx	mlx;
 
 	if (ac < 2)
 		ft_error(-1, "");
@@ -25,7 +26,7 @@ int		main(int ac, char **av)
 		ft_init_struct_infomap(&info_map);
 		ft_read_management(av[ac - 1], &info_map);
 		ft_check_len_map(&info_map);
-	//	ft_map_2D(&info_map);
+		ft_map_2D(&info_map, &mlx);
 	//	ft_raycaster(&info_map);
 	}
 /*	printf("texture |%s|\n", info_map.north_t);

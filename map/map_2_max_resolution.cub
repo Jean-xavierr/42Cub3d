@@ -1,4 +1,4 @@
-R 640 480
+R 1920 1080
 NO ./texture/map
 SO ./texture/map
 WE ./texture/map

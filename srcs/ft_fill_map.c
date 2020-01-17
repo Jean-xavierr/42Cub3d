@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 10:51:59 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/17 13:48:18 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/17 14:14:30 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ int		ft_check_len_map(t_info *info_map)
 	}
 	printf("\nx = %d", x);
 	printf("\nlen_max = %d",len_max);
+	info_map->len_x = x;
+	info_map->len_y = len_max;
 	ft_fill_map(info_map, x, len_max);
 	return(len_max);
 }

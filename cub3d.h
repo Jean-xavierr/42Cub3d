@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/17 11:12:27 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/17 14:14:27 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef	struct		s_info
 {
 	char	**map;
 	int		len_map;
+	int		len_x;
+	int		len_y;
 	int		rx;
 	int		ry;
 	char	north_t[256];
@@ -53,6 +55,9 @@ typedef struct		s_mlx
 	void	*win;
 	void	*img;
 	void	*data_img;
+	int		bpixel;
+	int		size_line;
+	int		endian;
 }					t_mlx;
 
 typedef struct		s_len_map
@@ -63,7 +68,7 @@ typedef struct		s_len_map
 }					t_len_map;
 
 /* --> Cub3d.c <-- */
-int		ft_map_2D(t_info *info_map);
+int		ft_map_2D(t_info *info_map, t_mlx *mlx);
 
 /* --> ft_read_map <-- */
 void	ft_read_map(char *s, t_info *info_map);
