@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 09:42:41 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/14 11:05:40 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/20 10:24:01 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ int					main(void)
 	mlx.img = mlx_new_image(mlx.ptr, 640, 480);		
 	mlx.img = mlx_new_image(mlx.ptr, 640, 480);		
 	mlx.data_img = mlx_get_data_addr(mlx.img, &mlx.bpixel, &mlx.size_line, &mlx.endian);
-
 	printf("bpixel %d\n", mlx.bpixel);
 	printf("size_line %d\n", mlx.size_line);
 	mlx.bpixel = mlx.bpixel / 8;

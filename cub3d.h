@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/17 14:14:27 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/20 11:49:31 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <mlx.h>
 
 /* --> structure <-- */
+
 typedef	struct		s_info
 {
 	char	**map;
@@ -41,14 +42,14 @@ typedef	struct		s_info
 
 typedef struct		s_player
 {
-	double	posX;
-	double	posY;
+	int		posX;
+	int		posY;
 	double	dirX;
 	double	dirY;
 	double	planeX;
 	double	planeY;
 }					t_player;
-
+	
 typedef struct		s_mlx
 {
 	void	*ptr;
@@ -60,12 +61,32 @@ typedef struct		s_mlx
 	int		endian;
 }					t_mlx;
 
+typedef struct		s_move
+{
+	int				esc;
+	int				foward;
+	int				retreat;
+	int				left;
+	int				right;
+	int				turn_left;
+	int				turn_right;
+	int				sprint;
+}					t_move;
+
 typedef struct		s_len_map
 {
 	int		l1;
 	int		l2;
 	int		check;
 }					t_len_map;
+
+typedef	struct		s_storage
+{
+	t_info		*info;
+	t_mlx		*mlx;
+	t_player	*player;
+	t_move		*move;
+}					t_storage;
 
 /* --> Cub3d.c <-- */
 int		ft_map_2D(t_info *info_map, t_mlx *mlx);
