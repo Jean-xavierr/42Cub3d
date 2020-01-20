@@ -6,13 +6,13 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/20 13:11:02 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/20 13:59:39 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		ft_mini_map(t_info *info_map, t_mlx *mlx, int x, int y, int color)
+void		ft_mini_map(t_storage *storage, int x, int y, int color)
 {
 	int		n2;
 	int		n3;
@@ -25,9 +25,9 @@ void		ft_mini_map(t_info *info_map, t_mlx *mlx, int x, int y, int color)
 	n2 = 0;
 	n4 = 0;
 	line = 0;
-	t_x = (info_map->rx / 2) / info_map->len_y;
-	t_y = (info_map->ry / 2) / info_map->len_x;
-	size_line = mlx->size_line / 4;
+	t_x = (storage->info->rx / 2) / storage->info->len_y;
+	t_y = (storage->info->ry / 2) / storage->info->len_x;
+	size_line = storage->mlx->size_line / 4;
 	while (n2 < (x * t_x))
 	{
 		line = line + size_line;
@@ -40,39 +40,32 @@ void		ft_mini_map(t_info *info_map, t_mlx *mlx, int x, int y, int color)
 		n3 = y * t_y;
 		while (n3 < n4)
 		{
-			*(int *)(&mlx->data_img[(line + n3) * mlx->bpixel]) = color;
+			*(int *)(&storage->mlx->data_img[(line + n3) * storage->mlx->bpixel]) = color;
 			n3++;
 		}
 		line = line + size_line;
 		n2++;
 	}
-	
 }
 
-void	ft_draw_mini_map(t_info *info_map, t_mlx *mlx, t_player *player)
+void	ft_draw_mini_map(t_storage *storage)
 {
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	mlx->endian = 0;
-	while (info_map->map[x])
+	while (storage->info->map[x])
 	{
 		y = 0;
-		while (info_map->map[x][y])
+		while (storage->info->map[x][y])
 		{
-			if (info_map->map[x][y] == '1')
-				ft_mini_map(info_map, mlx, x, y, 000000);
+			if (storage->info->map[x][y] == '1')
+				ft_mini_map(storage, x, y, 000000);
 			y++;
 		}
 		x++;
 	}
-	player->dirX = 0;
-/*	*(int *)(&mlx->data_img[player->posX + player->posY]) = 93211680;
-	*(int *)(&mlx->data_img[player->posX + 2560 + player->posY]) = 93211680;
-	*(int *)(&mlx->data_img[player->posX + player->posY + 1]) = 93211680;
-	*(int *)(&mlx->data_img[player->posX + 2560 + player->posY + 1]) = 93211680;*/
 }
 
 int					ft_keyrelease(int keycode, t_move *move)
@@ -145,32 +138,27 @@ int					ft_keypress(int keycode, t_move *move)
 }
 
 int					ft_expose(t_storage	*storage)
-{	
-	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY]) = 000000;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY]) = 000000;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY + 1]) = 000000;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY + 1]) = 000000;
-	printf("move player : ");
+{
+	int		i;
+
+	i = 0;
+	storage->mlx->img = mlx_new_image(storage->mlx->ptr, storage->info->rx, storage->info->ry);
+	storage->mlx->data_img = mlx_get_data_addr(storage->mlx->img, &storage->mlx->bpixel, &storage->mlx->size_line, &storage->mlx->endian);
+	storage->mlx->bpixel = storage->mlx->bpixel / 8;
+	while (i < ((storage->mlx->size_line / storage->mlx->bpixel) * storage->info->ry))
+	{
+		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 16777215;
+		i++;
+	}
+	ft_draw_mini_map(storage);
 	if (storage->move->foward == 1)
-	{
-		printf("move foward\n");
 		storage->player->posX -= 2560;
-	}
 	if (storage->move->retreat == 1)
-	{	
-		printf("move retreat\n");
 		storage->player->posX += 2560;
-	}
 	if (storage->move->left == 1)
-	{
-		printf("move left\n");
 		storage->player->posY-= 5;
-	}
 	if (storage->move->right == 1)
-	{
-		printf("move right\n");
 		storage->player->posY += 5;
-	}
 	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY]) = 93211680;
 	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY]) = 93211680;
 	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY + 1]) = 93211680;
@@ -181,12 +169,10 @@ int					ft_expose(t_storage	*storage)
 
 int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 {
-	int			i;
 	t_move		move;
 	t_player	player;
 	t_storage	storage;
 
-	i = 0;	
 	player.posX = 2560 * 15;
 	player.posY = 17 * 200;
 	move.foward = 0;
@@ -198,22 +184,9 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 		return (printf("init fail"));
 	if ((mlx->win = mlx_new_window(mlx->ptr, info_map->rx, info_map->ry, "Cub3d")) == NULL)
 		return (printf("windows fail"));
-	mlx->img = mlx_new_image(mlx->ptr, info_map->rx, info_map->ry);
-	mlx->data_img = mlx_get_data_addr(mlx->img, &mlx->bpixel, &mlx->size_line, &mlx->endian);
-	mlx->bpixel = mlx->bpixel / 8;
-	printf("\nstorage test %d\n", storage.move->foward);
-	printf("storage player %d\n", storage.player->posX);
-	printf("size_line %d", mlx->size_line);
-	while (i < ((mlx->size_line / mlx->bpixel) * info_map->ry))
-	{
-		*(int *)&mlx->data_img[i * mlx->bpixel] = 16777215;
-		i++;
-	}
-	ft_draw_mini_map(info_map, mlx, &player);
 	mlx_hook(mlx->win, 2, 1L << 0, ft_keypress, &move);
 	mlx_hook(mlx->win, 3, 1L << 1, ft_keyrelease, &move);
  	mlx_loop_hook(mlx->ptr, ft_expose, &storage);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0 , 0);
 	mlx_loop(mlx->ptr);
 	return (0);
 }
