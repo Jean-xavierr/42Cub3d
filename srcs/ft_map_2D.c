@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/20 13:59:39 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/20 15:53:25 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 	t_player	player;
 	t_storage	storage;
 
-	player.posX = 2560 * 15;
-	player.posY = 17 * 200;
+	player.posX = 2560 * 15; //(posX)
+	player.posY = 17 * 200; //(posY)
 	move.foward = 0;
 	storage.info = info_map;
 	storage.mlx = mlx;
@@ -184,8 +184,8 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 		return (printf("init fail"));
 	if ((mlx->win = mlx_new_window(mlx->ptr, info_map->rx, info_map->ry, "Cub3d")) == NULL)
 		return (printf("windows fail"));
-	mlx_hook(mlx->win, 2, 1L << 0, ft_keypress, &move);
-	mlx_hook(mlx->win, 3, 1L << 1, ft_keyrelease, &move);
+	mlx_hook(mlx->win, KEYPRESS_EVENT, KEYPRESS_MASK, ft_keypress, &move);
+	mlx_hook(mlx->win, KEYRELEASE_EVENT, KEYRELEASE_MASK, ft_keyrelease, &move);
  	mlx_loop_hook(mlx->ptr, ft_expose, &storage);
 	mlx_loop(mlx->ptr);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/20 11:49:31 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/20 15:53:17 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include <string.h>
 # include "includes/get_next_line.h"
 # include <mlx.h>
+
+/* --> define <-- */
+
+#define KEYPRESS_EVENT 2
+#define KEYPRESS_MASK 1
+#define KEYRELEASE_EVENT 3
+#define KEYRELEASE_MASK 2
 
 /* --> structure <-- */
 
