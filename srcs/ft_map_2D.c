@@ -6,45 +6,40 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/20 15:53:25 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/21 13:38:19 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		ft_mini_map(t_storage *storage, int x, int y, int color)
+void		ft_mini_map(t_storage *storage, int y, int x, int color)
 {
-	int		n2;
-	int		n3;
-	int		n4;
+	int		iy;
+	int		ix;
+	int		ix_max;
 	int		t_x;
 	int		t_y;
 	int 	line;
 	int		size_line;
 
-	n2 = 0;
-	n4 = 0;
+	iy = 0;
+	ix_max = 0;
 	line = 0;
-	t_x = (storage->info->rx / 2) / storage->info->len_y;
-	t_y = (storage->info->ry / 2) / storage->info->len_x;
+	t_x = (storage->info->rx / 2) / storage->info->len_x;
+	t_y = (storage->info->ry / 2) / storage->info->len_y;
 	size_line = storage->mlx->size_line / 4;
-	while (n2 < (x * t_x))
+	line = size_line * (y * t_y);
+	ix_max = (x + 1) * t_x;
+	while (iy < t_y)
 	{
-		line = line + size_line;
-		n2++;
-	}
-	n2 = 0;
-	n4 = (y + 1) * t_y;
-	while (n2 < t_x)
-	{
-		n3 = y * t_y;
-		while (n3 < n4)
+		ix = x * t_x;
+		while (ix < ix_max)
 		{
-			*(int *)(&storage->mlx->data_img[(line + n3) * storage->mlx->bpixel]) = color;
-			n3++;
+			*(int *)(&storage->mlx->data_img[(line + ix) * storage->mlx->bpixel]) = color;
+			ix++;
 		}
 		line = line + size_line;
-		n2++;
+		iy++;
 	}
 }
 
@@ -55,16 +50,16 @@ void	ft_draw_mini_map(t_storage *storage)
 
 	x = 0;
 	y = 0;
-	while (storage->info->map[x])
+	while (storage->info->map[y])
 	{
-		y = 0;
-		while (storage->info->map[x][y])
+		x = 0;
+		while (storage->info->map[y][x])
 		{
-			if (storage->info->map[x][y] == '1')
-				ft_mini_map(storage, x, y, 000000);
-			y++;
+			if (storage->info->map[y][x] == '1')
+				ft_mini_map(storage, y, x, 000000);
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
@@ -140,6 +135,8 @@ int					ft_keypress(int keycode, t_move *move)
 int					ft_expose(t_storage	*storage)
 {
 	int		i;
+//	int		p_x;
+//	int		p_y;
 
 	i = 0;
 	storage->mlx->img = mlx_new_image(storage->mlx->ptr, storage->info->rx, storage->info->ry);
@@ -151,6 +148,12 @@ int					ft_expose(t_storage	*storage)
 		i++;
 	}
 	ft_draw_mini_map(storage);
+/*	p_x = (storage->player->posX * ((storage->info->rx / 2) / storage->info->len_y)) * storage->mlx->size_line / 2;
+	printf("p_x = %d", p_x);
+	p_y = (storage->player->posY * ((storage->info->ry / 2) / storage->info->len_y));
+	printf("p_y = %d", p_y);*/
+/*	p_y = (int)(info->p1.y * ((info->wi.y / 4) / info->wi.y_map)) * info->img.sl / 4;
+	p_x = (int)(info->p1.x * ((info->wi.x / 4) / info->wi.x_map));*/
 	if (storage->move->foward == 1)
 		storage->player->posX -= 2560;
 	if (storage->move->retreat == 1)
@@ -159,10 +162,10 @@ int					ft_expose(t_storage	*storage)
 		storage->player->posY-= 5;
 	if (storage->move->right == 1)
 		storage->player->posY += 5;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY]) = 93211680;
+/*	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY]) = 93211680;
 	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY]) = 93211680;
 	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY + 1]) = 93211680;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY + 1]) = 93211680;
+	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY + 1]) = 93211680;*/
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0 , 0);
 	return (0);
 }
@@ -173,8 +176,9 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 	t_player	player;
 	t_storage	storage;
 
-	player.posX = 2560 * 15; //(posX)
-	player.posY = 17 * 200; //(posY)
+	player.posX = 2560 * 15;//(posX) 2560 * 15; 
+	player.posY = 17 * 200;//(posY) 17 * 200;
+
 	move.foward = 0;
 	storage.info = info_map;
 	storage.mlx = mlx;
