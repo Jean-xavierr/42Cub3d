@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/20 15:53:17 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:09:30 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ typedef	struct		s_info
 
 typedef struct		s_player
 {
-	int		posX;
-	int		posY;
+	float	posX;
+	float	posY;
+	float	x;
+	float	y;
 	double	dirX;
 	double	dirY;
 	double	planeX;

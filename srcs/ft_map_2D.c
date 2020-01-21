@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/21 13:38:19 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:19:36 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_draw_mini_map(t_storage *storage)
 		{
 			if (storage->info->map[y][x] == '1')
 				ft_mini_map(storage, y, x, 000000);
+			else if (storage->info->map[y][x] == '0')
+				ft_mini_map(storage, y, x, 16777215);
 			x++;
 		}
 		y++;
@@ -135,9 +137,6 @@ int					ft_keypress(int keycode, t_move *move)
 int					ft_expose(t_storage	*storage)
 {
 	int		i;
-//	int		p_x;
-//	int		p_y;
-
 	i = 0;
 	storage->mlx->img = mlx_new_image(storage->mlx->ptr, storage->info->rx, storage->info->ry);
 	storage->mlx->data_img = mlx_get_data_addr(storage->mlx->img, &storage->mlx->bpixel, &storage->mlx->size_line, &storage->mlx->endian);
@@ -147,26 +146,23 @@ int					ft_expose(t_storage	*storage)
 		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 16777215;
 		i++;
 	}
-	ft_draw_mini_map(storage);
-/*	p_x = (storage->player->posX * ((storage->info->rx / 2) / storage->info->len_y)) * storage->mlx->size_line / 2;
-	printf("p_x = %d", p_x);
-	p_y = (storage->player->posY * ((storage->info->ry / 2) / storage->info->len_y));
-	printf("p_y = %d", p_y);*/
-/*	p_y = (int)(info->p1.y * ((info->wi.y / 4) / info->wi.y_map)) * info->img.sl / 4;
-	p_x = (int)(info->p1.x * ((info->wi.x / 4) / info->wi.x_map));*/
+	ft_draw_mini_map(storage);		
+	storage->player->x = (storage->player->posX * ((storage->info->rx / 2) / storage->info->len_x));
+	storage->player->y = (storage->player->posY * ((storage->info->ry / 2) / storage->info->len_y)) * storage->mlx->size_line / 4;
 	if (storage->move->foward == 1)
-		storage->player->posX -= 2560;
+		storage->player->posY -= 0.05;
 	if (storage->move->retreat == 1)
-		storage->player->posX += 2560;
+		storage->player->posY += 0.05;
 	if (storage->move->left == 1)
-		storage->player->posY-= 5;
+		storage->player->posX -= 0.05;
 	if (storage->move->right == 1)
-		storage->player->posY += 5;
-/*	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY]) = 93211680;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY]) = 93211680;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + storage->player->posY + 1]) = 93211680;
-	*(int *)(&storage->mlx->data_img[storage->player->posX + 2560 + storage->player->posY + 1]) = 93211680;*/
+		storage->player->posX += 0.05;
+	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + 1) * 4]) = 93211680;
+	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - 1) * 4]) = 93211680;
+	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + (storage->mlx->size_line / 4)) * 4]) = 93211680;
+	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - (storage->mlx->size_line / 4)) * 4]) = 93211680;
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0 , 0);
+	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);
 	return (0);
 }
 
@@ -174,11 +170,12 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 {
 	t_move		move;
 	t_player	player;
-	t_storage	storage;
+	t_storage	storage;	
 
-	player.posX = 2560 * 15;//(posX) 2560 * 15; 
-	player.posY = 17 * 200;//(posY) 17 * 200;
 
+
+	player.posX = 14; 
+	player.posY = 2;	
 	move.foward = 0;
 	storage.info = info_map;
 	storage.mlx = mlx;
