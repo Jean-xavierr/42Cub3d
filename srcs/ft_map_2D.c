@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/21 15:19:36 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:45:32 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,16 +147,16 @@ int					ft_expose(t_storage	*storage)
 		i++;
 	}
 	ft_draw_mini_map(storage);		
-	storage->player->x = (storage->player->posX * ((storage->info->rx / 2) / storage->info->len_x));
-	storage->player->y = (storage->player->posY * ((storage->info->ry / 2) / storage->info->len_y)) * storage->mlx->size_line / 4;
+	storage->player->x = (int)(storage->player->posX * ((storage->info->rx / 2) / storage->info->len_x));
+	storage->player->y = (int)(storage->player->posY * ((storage->info->ry / 2) / storage->info->len_y)) * storage->mlx->size_line / 4;
 	if (storage->move->foward == 1)
 		storage->player->posY -= 0.05;
 	if (storage->move->retreat == 1)
 		storage->player->posY += 0.05;
 	if (storage->move->left == 1)
-		storage->player->posX -= 0.05;
+		storage->player->posX -= 0.08;
 	if (storage->move->right == 1)
-		storage->player->posX += 0.05;
+		storage->player->posX += 0.08;
 	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + 1) * 4]) = 93211680;
 	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - 1) * 4]) = 93211680;
 	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + (storage->mlx->size_line / 4)) * 4]) = 93211680;
