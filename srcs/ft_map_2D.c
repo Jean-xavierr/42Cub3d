@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/21 15:45:32 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/22 11:10:15 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,33 @@ int					ft_keypress(int keycode, t_move *move)
 	return (0);
 }
 
+int					ft_exit_prog(t_storage *storage)
+{
+	int		y;
+
+	y = 0;
+	while (storage->info->map[y])
+	{
+		free(storage->info->map[y]);
+		y++;
+	}
+	free(storage->info->map[y]);
+	free(storage->info->map);
+	write(1, "FREE -> ", 8);
+	mlx_clear_window(storage->mlx->ptr, storage->mlx->win);
+	write(1, "CLEAR -> ", 9);
+	mlx_destroy_window(storage->mlx->ptr, storage->mlx->win);
+	write(1, "DESTROY \n", 7);
+	while (1)
+		;
+	exit(0);
+	return (1);
+}
+
 int					ft_expose(t_storage	*storage)
 {
 	int		i;
+	
 	i = 0;
 	storage->mlx->img = mlx_new_image(storage->mlx->ptr, storage->info->rx, storage->info->ry);
 	storage->mlx->data_img = mlx_get_data_addr(storage->mlx->img, &storage->mlx->bpixel, &storage->mlx->size_line, &storage->mlx->endian);
@@ -162,7 +186,9 @@ int					ft_expose(t_storage	*storage)
 	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + (storage->mlx->size_line / 4)) * 4]) = 93211680;
 	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - (storage->mlx->size_line / 4)) * 4]) = 93211680;
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0 , 0);
-	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);
+	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);	
+	if (storage->move->esc == 1)
+		ft_exit_prog(storage);
 	return (0);
 }
 

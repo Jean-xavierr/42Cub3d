@@ -6,34 +6,21 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 10:51:59 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/21 13:08:32 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:29:28 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
-void	ft_fill_map(t_info *info_map, int y, int len_max)
+char	**ft_fill_map(t_info *info_map, char **new_map, int len_max)
 {
+	int		y;
 	int		x;
-	char	**new_map;
 
-
-	if (!(new_map = (char **)malloc(sizeof(char *) * (y + 1))))
-		return ;
-	x = 0;
-	while (x <= y)
-	{
-		if (!(new_map[x] = (char *)malloc(sizeof(char) * (len_max + 1))))
-			return ;
-		new_map[0][0] = '\0';
-		x++;
-	}
-	x = 0;
 	y = 0;
 	while (info_map->map[y])
 	{
-		x = 0;	
+		x = 0;
 		while (info_map->map[y][x] != '\0')
 		{
 			new_map[y][x] = info_map->map[y][x];
@@ -51,21 +38,25 @@ void	ft_fill_map(t_info *info_map, int y, int len_max)
 		}
 		y++;
 	}
-	new_map[y] = 0;
-/*	x = 0;
-	printf("\nnew_map");
-	while (new_map[x] != '\0')
+	return (new_map);
+}
+
+void	ft_malloc_new_map(t_info *info_map, int len_y, int len_max)
+{
+	int		y;
+	char	**new_map;
+
+	if (!(new_map = (char **)malloc(sizeof(char *) * (len_y + 1))))
+		return ;
+	y = 0;
+	while (y < len_y)
 	{
-		printf("\n|%s|", new_map[x]);
-		x++;
+		if (!(new_map[y] = (char *)malloc(sizeof(char) * (len_max + 1))))
+			return ;
+		y++;
 	}
-	x = 0;
-	printf("\nancien_map");
-	while (info_map->map[x])
-	{
-		printf("\n|%s|", info_map->map[x]);
-		x++;
-	}*/
+	new_map[y] = NULL;
+	new_map = ft_fill_map(info_map, new_map, len_max);
 	y = 0;
 	while (info_map->map[y])
 		free(info_map->map[y++]);
@@ -80,7 +71,7 @@ void	ft_fill_map(t_info *info_map, int y, int len_max)
 	}
 }
 
-int		ft_check_len_map(t_info *info_map)
+void	ft_check_len_map(t_info *info_map)
 {
 	int		y;
 	int		x;
@@ -100,9 +91,8 @@ int		ft_check_len_map(t_info *info_map)
 		y++;
 	}
 	printf("\ny = %d", y);
-	printf("\nlen_max = %d",len_max);
+	printf("\nlen_max = %d", len_max);
 	info_map->len_x = len_max;
 	info_map->len_y = y;
-	ft_fill_map(info_map, y, len_max);
-	return(len_max);
+	ft_malloc_new_map(info_map, y, len_max);
 }

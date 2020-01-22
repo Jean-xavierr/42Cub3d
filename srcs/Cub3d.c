@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/17 14:08:21 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/22 12:09:08 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		main(int ac, char **av)
 	t_info	info_map;
 	t_mlx	mlx;
 
+	mlx.ptr = 0;
 	if (ac < 2)
 		ft_error(-1, "");
 	else if (ac > 2)
