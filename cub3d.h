@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/22 14:25:46 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:09:41 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,16 @@ void	ft_init_struct_infomap(t_info *info_map);
 
 /* --> ft_fill_map <-- */
 void	ft_check_len_map(t_info *info_map);
+
+/* --> ft_exit_prog.c <-- */
+int		ft_exit_prog(t_storage *storage);
+
+/* --> ft_keyboard_action.c */
+int		ft_keyrelease(int keycode, t_move *move);
+int		ft_keypress(int keycode, t_move *move);
+
+/* --> ft_move_player_mini_map.c <-- */
+void	ft_move_player_mini_map(t_storage *storage);
 
 /* --> ft_raycaster <-- */
 void	ft_raycaster(t_info *info);

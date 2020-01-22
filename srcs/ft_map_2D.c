@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/22 11:10:15 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:18:07 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,98 +65,6 @@ void	ft_draw_mini_map(t_storage *storage)
 	}
 }
 
-int					ft_keyrelease(int keycode, t_move *move)
-{
-	printf("\nkeycode |%d| : ", keycode);
-	if (keycode == 53)
-		move->esc = 0;
-	else if (keycode == 13)
-		move->foward = 0;
-	else if (keycode == 1)
-		move->retreat = 0;
-	else if (keycode == 0)
-		move->left = 0;
-	else if (keycode == 2)
-		move->right = 0;
-	else if (keycode == 123)
-		move->turn_left = 0;
-	else if (keycode == 124)
-		move->turn_right = 0;
-	else if (keycode == 257)
-		move->sprint = 1;
-	printf("0");
-	return (0);
-}
-
-int					ft_keypress(int keycode, t_move *move)
-{
-	printf("\nkeycode |%d| : ", keycode);
-	if (keycode == 53)
-	{
-		move->esc = 1;
-		printf("esc");
-	}
-	else if (keycode == 13)
-	{
-		move->foward = 1;
-		printf("forward");
-	}
-	else if (keycode == 1)
-	{
-		move->retreat = 1;
-		printf("retreat");
-	}
-	else if (keycode == 0)
-	{
-		move->left = 1;
-		printf("left");
-	}
-	else if (keycode == 2)
-	{
-		move->right = 1;
-		printf("right");
-	}
-	else if (keycode == 123)
-	{
-		move->turn_left = 1;
-		printf("turn left");
-	}
-	else if (keycode == 124)
-	{
-		move->turn_right = 1;
-		printf("turn right");
-	}
-	else if (keycode == 257)
-	{
-		move->sprint = 1;
-		printf ("sprint");
-	}
-	return (0);
-}
-
-int					ft_exit_prog(t_storage *storage)
-{
-	int		y;
-
-	y = 0;
-	while (storage->info->map[y])
-	{
-		free(storage->info->map[y]);
-		y++;
-	}
-	free(storage->info->map[y]);
-	free(storage->info->map);
-	write(1, "FREE -> ", 8);
-	mlx_clear_window(storage->mlx->ptr, storage->mlx->win);
-	write(1, "CLEAR -> ", 9);
-	mlx_destroy_window(storage->mlx->ptr, storage->mlx->win);
-	write(1, "DESTROY \n", 7);
-	while (1)
-		;
-	exit(0);
-	return (1);
-}
-
 int					ft_expose(t_storage	*storage)
 {
 	int		i;
@@ -171,21 +79,8 @@ int					ft_expose(t_storage	*storage)
 		i++;
 	}
 	ft_draw_mini_map(storage);		
-	storage->player->x = (int)(storage->player->posX * ((storage->info->rx / 2) / storage->info->len_x));
-	storage->player->y = (int)(storage->player->posY * ((storage->info->ry / 2) / storage->info->len_y)) * storage->mlx->size_line / 4;
-	if (storage->move->foward == 1)
-		storage->player->posY -= 0.05;
-	if (storage->move->retreat == 1)
-		storage->player->posY += 0.05;
-	if (storage->move->left == 1)
-		storage->player->posX -= 0.08;
-	if (storage->move->right == 1)
-		storage->player->posX += 0.08;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + 1) * 4]) = 93211680;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - 1) * 4]) = 93211680;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + (storage->mlx->size_line / 4)) * 4]) = 93211680;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - (storage->mlx->size_line / 4)) * 4]) = 93211680;
-	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0 , 0);
+	ft_move_player_mini_map(storage);
+	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0, 0);
 	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);	
 	if (storage->move->esc == 1)
 		ft_exit_prog(storage);

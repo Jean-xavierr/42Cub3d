@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2020/01/17 10:55:06 by jereligi         ###   ########.fr        #
+#    Updated: 2020/01/22 15:11:55 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ SRCS =	Cub3d.c \
 		get_next_line_utils.c \
 		ft_map_2D.c \
 		ft_fill_map.c \
+		ft_keyboard_action.c \
+		ft_move_player_mini_map.c \
+		ft_exit_prog.c \
 		ft_raycaster.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
