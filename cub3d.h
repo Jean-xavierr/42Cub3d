@@ -6,13 +6,14 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/24 11:15:55 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/24 15:14:53 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <math.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/24 11:24:20 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/24 16:01:05 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int					ft_expose(t_storage	*storage)
 		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 255;
 		i++;
 	}
+	ft_raycaster(storage);
 	ft_draw_mini_map(storage);		
 	ft_move_player_mini_map(storage);
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0, 0);
