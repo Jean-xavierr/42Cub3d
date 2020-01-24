@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/22 15:09:41 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/24 11:15:55 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,26 @@ typedef struct		s_move
 	int				sprint;
 }					t_move;
 
+typedef struct		s_ray
+{
+	double			planeX;
+	double			planeY;
+	double			camX;
+	double			raydirX;
+	double			raydirY;
+	int				mapX;
+	int				mapY;
+	double			sidedistX;
+	double			sidedistY;
+	double			deltadistX;
+	double			deltadistY;
+	double			perpwalldist;
+	int				stepX;
+	int				stepY;
+	int				hit;
+	int				side;
+}					t_ray;
+
 typedef struct		s_len_map
 {
 	int		l1;
@@ -95,6 +115,7 @@ typedef	struct		s_storage
 	t_mlx		*mlx;
 	t_player	*player;
 	t_move		*move;
+	t_ray		*ray;
 }					t_storage;
 
 /* --> Cub3d.c <-- */
@@ -139,7 +160,7 @@ int		ft_keypress(int keycode, t_move *move);
 void	ft_move_player_mini_map(t_storage *storage);
 
 /* --> ft_raycaster <-- */
-void	ft_raycaster(t_info *info);
+void	ft_raycaster(t_storage *storage);
 
 //  ----------------
 // 	function utils.c

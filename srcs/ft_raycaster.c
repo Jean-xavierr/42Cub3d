@@ -6,34 +6,24 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 10:36:58 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/06 13:17:56 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/24 11:22:19 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_init_player(t_player *player)
+void	ft_init_ray(t_ray *ray)
 {
-	player->posX = 2;
-	player->posY = 2;
-	player->dirX = -1;
-	player->dirY = 0;
-	player->planeX = 0;
-	player->planeY = 0.66;
+	ray->planeX = 0;
+	ray->planeY = 0.66;
+
 }
 
-void	ft_init_mlx(t_mlx *mlx, t_info *info_map)
+void	ft_raycaster(t_storage *storage)
 {
-	mlx->ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->ptr, info_map->rx, info_map->ry, "Cub3d");
-}
+	t_ray	ray;
 
-void	ft_raycaster(t_info *info_map)
-{
-	t_player	player;
-	t_mlx		mlx;	
+	ft_init_ray(&ray);	
+	storage->ray = &ray;
 
-	ft_init_player(&player);
-	ft_init_mlx(&mlx, info_map);	
-	mlx_loop(mlx.ptr);
 }

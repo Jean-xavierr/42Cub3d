@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/22 15:18:07 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/24 11:24:20 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,14 @@ int					ft_expose(t_storage	*storage)
 	storage->mlx->img = mlx_new_image(storage->mlx->ptr, storage->info->rx, storage->info->ry);
 	storage->mlx->data_img = mlx_get_data_addr(storage->mlx->img, &storage->mlx->bpixel, &storage->mlx->size_line, &storage->mlx->endian);
 	storage->mlx->bpixel = storage->mlx->bpixel / 8;
-	while (i < ((storage->mlx->size_line / storage->mlx->bpixel) * storage->info->ry))
+	while (i < storage->info->rx * (storage->info->ry / 2))
 	{
-		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 16777215;
+		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 16711680;
+		i++;
+	}
+	while (i < storage->info->rx * (storage->info->ry))
+	{
+		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 255;
 		i++;
 	}
 	ft_draw_mini_map(storage);		
@@ -96,7 +101,9 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 
 
 	player.posX = 14; 
-	player.posY = 2;	
+	player.posY = 2;
+	player.dirX = -1;
+	player.dirY = 0;	
 	move.foward = 0;
 	storage.info = info_map;
 	storage.mlx = mlx;
