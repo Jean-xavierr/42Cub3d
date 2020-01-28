@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:10 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 16:27:11 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:46:24 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ void	ft_player_pos_cam(t_storage *storage)
 			storage->player->posX -= storage->player->dirX * storage->player->move_speed;
 		if (storage->info->map[(int)(storage->player->posY - storage->player->dirY * storage->player->move_speed)][(int)(storage->player->posX)] != '1')
 			storage->player->posY -= storage->player->dirY * storage->player->move_speed;
+	}
+	if (storage->move->left == 1)
+	{
+		if (storage->info->map[(int)(storage->player->posY)][(int)(storage->player->posX - storage->ray->planeX * storage->player->move_speed)] != 1)
+			storage->player->posX = storage->player->posX - storage->ray->planeX * storage->player->move_speed;
+		if (storage->info->map[(int)(storage->player->posY + storage->ray->planeY * storage->player->move_speed)][(int)(storage->player->posX)] != 1)
+			storage->player->posY = storage->player->posY + storage->ray->planeY * storage->player->move_speed;
+	}
+	if (storage->move->right == 1)
+	{
+		if (storage->info->map[(int)(storage->player->posY)][(int)(storage->player->posX + storage->ray->planeX * storage->player->move_speed)] != 1)
+			storage->player->posX = storage->player->posX + storage->ray->planeX * storage->player->move_speed;
+		if (storage->info->map[(int)(storage->player->posY - storage->ray->planeY * storage->player->move_speed)][(int)(storage->player->posX)] != 1)
+			storage->player->posY = storage->player->posY - storage->ray->planeY * storage->player->move_speed;
 	}
 	if (storage->move->turn_left == 1)
 	{

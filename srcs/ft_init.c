@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:40:18 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 15:55:07 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:02:30 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void	ft_init_struct_player(t_player *player)
 	player->posY = 2.5;
 	player->dirX = 0;
 	player->dirY = -1;
-	player->move_speed = 0.07;
+	player->move_speed = 0.08;
 	player->rot_speed = 0.06;
 }

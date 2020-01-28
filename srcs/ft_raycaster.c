@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 10:36:58 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 15:30:32 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:05:31 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_draw_wall_color(t_storage *storage, t_ray *ray, int x)
 	drawend = lineheight / 2 + storage->info->ry / 2;
 	if (drawend >= storage->info->ry)
 		drawend = storage->info->ry - 1;
-	printf("\n\n");
+	/*printf("\n\n");
 	printf("ray.perwall %f\n", ray->perpwalldist);
 	printf("storage->ry %d\n", storage->info->ry);
 	printf("lineheight = %d\n", lineheight);
@@ -44,7 +44,7 @@ void	ft_draw_wall_color(t_storage *storage, t_ray *ray, int x)
 	printf("size_line %d\n", storage->mlx->size_line);
 	printf("bpixel %d\n", storage->mlx->bpixel);
 	printf("calcul pixel %d\n", (((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel));
-	printf("\n\n");
+	printf("\n\n");*/
 	if (ray->side == 1)
 	{
 		if (ray->raydirY >= 0)
@@ -102,7 +102,7 @@ void	ft_raycaster(t_storage *storage)
 		ray.mapY = (int)storage->player->posY;
 		ray.deltadistX = fabs(1 / ray.raydirX);
 		ray.deltadistY= fabs(1 / ray.raydirY);
-		printf("infodirY %f\n", storage->player->dirY);
+	/*	printf("infodirY %f\n", storage->player->dirY);
 		printf("plneY %f\n", ray.planeY);
 		printf("cam X = %f\n", ray.camX);
 		printf("raydirX = %f\n", ray.raydirX);
@@ -110,7 +110,7 @@ void	ft_raycaster(t_storage *storage)
 		printf("mapX = %d\n", ray.mapX);
 		printf("mapY = %d\n", ray.mapY);
 		printf("deltaX = %f\n", ray.deltadistX);
-		printf("deltaY = %f\n", ray.deltadistY);
+		printf("deltaY = %f\n", ray.deltadistY);*/
 		if (ray.raydirX < 0)
 		{
 			ray.stepX = -1;
@@ -132,12 +132,12 @@ void	ft_raycaster(t_storage *storage)
 			ray.stepY = 1;
 			ray.sidedistY = (ray.mapY + 1.0 - storage->player->posY) * ray.deltadistY;
 		}
-		printf("\n\n");
+	/*	printf("\n\n");
 		printf("px %f\n", storage->player->posX);
 		printf("py %f\n", storage->player->posY);
 		printf("sidedistX %f\n", ray.sidedistX);
 		printf("sidedistY %f\n", ray.sidedistY);
-		printf("stepY %d\n", ray.stepY);
+		printf("stepY %d\n", ray.stepY);*/
 		while (ray.hit == 0)
 		{
 			if (ray.sidedistX < ray.sidedistY)
@@ -151,23 +151,23 @@ void	ft_raycaster(t_storage *storage)
 				ray.sidedistY += ray.deltadistY;
 				ray.mapY += ray.stepY;
 				ray.side = 1;
-				printf("OKI\n");
+			//	printf("OKI\n");
 			}
 		//	printf("x | y %d | %d\n", ray.mapX, ray.mapY);
 		//	printf("map = = = %c\n", storage->info->map[2][14]);
 			if (storage->info->map[ray.mapY][ray.mapX] == '1')
 				ray.hit = 1;
 		}
-		printf("ray.mapy b %d\n", ray.mapY);
+	//	printf("ray.mapy b %d\n", ray.mapY);
 		if (ray.side == 0)
 			ray.perpwalldist = (ray.mapX - storage->player->posX + (1 - ray.stepX) / 2) / ray.raydirX;
 		else
 		{
-			printf("|||||\n");
+		/*	printf("|||||\n");
 			printf("ray.mapy %d\n", ray.mapY);
 			printf("py %f\n", storage->player->posY);
 			printf("ray.stepY %d\n", ray.stepY);
-			printf("ray.raydiry %f\n", ray.raydirY);
+			printf("ray.raydiry %f\n", ray.raydirY);*/
 			ray.perpwalldist = (ray.mapY - storage->player->posY + (1 - ray.stepY) / 2) / ray.raydirY;
 		}
 		storage->ray = &ray;
