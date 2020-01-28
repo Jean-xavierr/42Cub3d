@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/24 15:14:53 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:54:52 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct		s_player
 	float	y;
 	double	dirX;
 	double	dirY;
-	double	planeX;
-	double	planeY;
+	double	move_speed;
+	double	rot_speed;
 }					t_player;
 	
 typedef struct		s_mlx
@@ -146,6 +146,8 @@ void	ft_error(int error, char *s);
 
 /* --> ft_init.c <-- */
 void	ft_init_struct_infomap(t_info *info_map);
+void	ft_init_struct_move(t_move *move);
+void	ft_init_struct_player(t_player *player);
 
 /* --> ft_fill_map <-- */
 void	ft_check_len_map(t_info *info_map);
@@ -159,6 +161,7 @@ int		ft_keypress(int keycode, t_move *move);
 
 /* --> ft_move_player_mini_map.c <-- */
 void	ft_move_player_mini_map(t_storage *storage);
+void	ft_player_pos_cam(t_storage *storage);
 
 /* --> ft_raycaster <-- */
 void	ft_raycaster(t_storage *storage);

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 12:53:49 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:55:51 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,18 @@ int					ft_expose(t_storage	*storage)
 	storage->mlx->bpixel = storage->mlx->bpixel / 8;
 	while (i < storage->info->rx * (storage->info->ry / 2))
 	{
-		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 16711680;
+		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 50;
 		i++;
 	}
 	while (i < storage->info->rx * (storage->info->ry))
 	{
-		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 255;
+		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 3289700;
 		i++;
 	}
 	ft_raycaster(storage);
-	ft_draw_mini_map(storage);		
-	ft_move_player_mini_map(storage);
+	ft_draw_mini_map(storage);
+	ft_player_pos_cam(storage);	
+	//ft_move_player_mini_map(storage);
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0, 0);
 	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);	
 	if (storage->move->esc == 1)
@@ -100,12 +101,8 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 	t_storage	storage;	
 
 
-
-	player.posX = 14.5; 
-	player.posY = 2.5;
-	player.dirX = 0;
-	player.dirY = -1;	
-	move.foward = 0;
+	ft_init_struct_move(&move);
+	ft_init_struct_player(&player);
 	storage.info = info_map;
 	storage.mlx = mlx;
 	storage.player = &player;

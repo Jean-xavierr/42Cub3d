@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 10:36:58 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 13:34:32 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:30:32 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,22 @@ void	ft_draw_wall_color(t_storage *storage, t_ray *ray, int x)
 	printf("bpixel %d\n", storage->mlx->bpixel);
 	printf("calcul pixel %d\n", (((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel));
 	printf("\n\n");
-	//while (x == 2)
-	//	;
 	if (ray->side == 1)
 	{
 		if (ray->raydirY >= 0)
 		{
 			while (drawstart < drawend)
 			{
-				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 16711680;
-				++drawstart;
+				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 16724530; // Red rgg : 255,50,50 | sud
+				drawstart++;
 			}
 		}
 		else
 		{
 			while (drawstart < drawend)
 			{
-				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 16753920;
-				++drawstart;
+				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 16753920; // Yellow rgb : 255,165,0 | north
+				drawstart++;
 			}
 		}
 	}
@@ -72,16 +70,16 @@ void	ft_draw_wall_color(t_storage *storage, t_ray *ray, int x)
 		{
 			while (drawstart < drawend)
 			{
-				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 65280;
-				++drawstart;
+				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 3333140; // Green rgb : 50,220,20 | right
+				drawstart++;
 			}
 		}
 		else
 		{
 			while (drawstart < drawend)
 			{
-				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 65535;
-				++drawstart;
+				*(int *)(&storage->mlx->data_img[((drawstart * storage->mlx->size_line / 4) + x) * storage->mlx->bpixel]) = 65535; // Blue // left
+				drawstart++;
 			}
 		}
 	}
