@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 17:11:37 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:28:04 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int					ft_expose(t_storage	*storage)
 	}
 	ft_raycaster(storage);
 	ft_draw_mini_map(storage);
-	ft_move_player_mini_map(storage);
+	//ft_move_player_mini_map(storage);
 	ft_player_pos_cam(storage);
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0, 0);
 	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:05:20 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 16:55:31 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:21:10 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	ft_draw_mini_map(t_storage *storage)
 		}
 		y++;
 	}
+	ft_move_player_mini_map(storage);
 }
