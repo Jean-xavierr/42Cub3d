@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 11:56:46 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/24 16:01:05 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 12:53:49 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ int		ft_map_2D(t_info *info_map, t_mlx *mlx)
 
 
 
-	player.posX = 14; 
-	player.posY = 2;
-	player.dirX = -1;
-	player.dirY = 0;	
+	player.posX = 14.5; 
+	player.posY = 2.5;
+	player.dirX = 0;
+	player.dirY = -1;	
 	move.foward = 0;
 	storage.info = info_map;
 	storage.mlx = mlx;
