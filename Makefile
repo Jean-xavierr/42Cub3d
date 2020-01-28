@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2020/01/22 15:11:55 by jereligi         ###   ########.fr        #
+#    Updated: 2020/01/28 16:21:24 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,10 @@ SRCS =	Cub3d.c \
 		ft_strcpy.c \
 		get_next_line.c \
 		get_next_line_utils.c \
-		ft_map_2D.c \
 		ft_fill_map.c \
 		ft_keyboard_action.c \
-		ft_move_player_mini_map.c \
+		ft_movement_player.c \
+		ft_mini_map.c \
 		ft_exit_prog.c \
 		ft_raycaster.c \
 

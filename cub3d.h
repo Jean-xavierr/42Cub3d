@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 15:54:52 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:20:25 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,10 @@ typedef	struct		s_storage
 }					t_storage;
 
 /* --> Cub3d.c <-- */
-int		ft_map_2D(t_info *info_map, t_mlx *mlx);
+
+/* --> ft_mini_map.c <-- */
+void	ft_color_wall_mini_map(t_storage *storage, int y, int x, int color);
+void	ft_draw_mini_map(t_storage *storage);
 
 /* --> ft_read_map <-- */
 void	ft_read_map(char *s, t_info *info_map);
