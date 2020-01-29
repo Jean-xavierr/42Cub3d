@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:10 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/29 13:56:21 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/29 14:12:06 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_player_pos_cam(t_storage *storage, t_player *player)
 	{
 		if (storage->info->map[(int)(player->posY)][(int)(player->posX + player->dirX * player->move_speed)] != '1')
 			player->posX += player->dirX * player->move_speed;
-		if (storage->info->map[(int)(player->posY - player->dirY * player->move_speed)][(int)(player->posX)] != '1')
+		if (storage->info->map[(int)(player->posY + player->dirY * player->move_speed)][(int)(player->posX)] != '1')
 			player->posY += player->dirY * player->move_speed;
 	}
 	if (storage->move->retreat == 1)
@@ -44,17 +44,17 @@ void	ft_player_pos_cam(t_storage *storage, t_player *player)
 	}
 	if (storage->move->left == 1)
 	{
-		if (storage->info->map[(int)(player->posY)][(int)(player->posX - storage->ray->planeX * player->move_speed)] != 1)
+		if (storage->info->map[(int)(player->posY)][(int)(player->posX - storage->ray->planeX * player->move_speed)] != '1')
 			player->posX = player->posX - storage->ray->planeX * player->move_speed;
-		if (storage->info->map[(int)(player->posY + storage->ray->planeY * player->move_speed)][(int)(player->posX)] != 1)
-			player->posY = player->posY + storage->ray->planeY * player->move_speed;
+		if (storage->info->map[(int)(player->posY - storage->ray->planeY * player->move_speed)][(int)(player->posX)] != '1')
+			player->posY = player->posY - storage->ray->planeY * player->move_speed;
 	}
 	if (storage->move->right == 1)
 	{
-		if (storage->info->map[(int)(player->posY)][(int)(player->posX + storage->ray->planeX * player->move_speed)] != 1)
+		if (storage->info->map[(int)(player->posY)][(int)(player->posX + storage->ray->planeX * player->move_speed)] != '1')
 			player->posX = player->posX + storage->ray->planeX * player->move_speed;
-		if (storage->info->map[(int)(player->posY - storage->ray->planeY * player->move_speed)][(int)(player->posX)] != 1)
-			player->posY = player->posY - storage->ray->planeY * player->move_speed;
+		if (storage->info->map[(int)(player->posY + storage->ray->planeY * player->move_speed)][(int)(player->posX)] != '1')
+			player->posY = player->posY + storage->ray->planeY * player->move_speed;
 	}
 	if (storage->move->turn_left == 1)
 	{	
