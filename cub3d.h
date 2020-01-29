@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 17:19:30 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/29 13:47:48 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ int		ft_keypress(int keycode, t_move *move);
 
 /* --> ft_move_player_mini_map.c <-- */
 void	ft_move_player_mini_map(t_storage *storage);
-void	ft_player_pos_cam(t_storage *storage);
+void	ft_player_pos_cam(t_storage *storage, t_player *player);
 
 /* --> ft_raycaster <-- */
 void	ft_raycaster(t_storage *storage);
