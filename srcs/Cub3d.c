@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 11:53:36 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:23:06 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int					ft_expose(t_storage	*storage)
 	}
 	ft_raycaster(storage, storage->ray);
 	ft_draw_mini_map(storage);
-	//ft_move_player_mini_map(storage);
 	ft_player_pos_cam(storage, storage->player);
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0, 0);
 	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);
@@ -57,6 +56,7 @@ int		ft_management_programme(t_info *info_map, t_mlx *mlx)
 	storage.player = &player;
 	storage.move = &move;
 	storage.ray = &ray;
+	ft_init_pos_player(&storage, &player);
 	if ((mlx->ptr = mlx_init()) == NULL)
 		return (printf("init fail"));
 	if ((mlx->win = mlx_new_window(mlx->ptr, info_map->rx, info_map->ry, "Cub3d")) == NULL)
@@ -75,13 +75,14 @@ int		main(int ac, char **av)
 
 	mlx.ptr = 0;
 	if (ac < 2)
-		ft_error(-1, "");
+		ft_management_error(-1, "");
 	else if (ac > 2)
-		ft_error(0, "");
+		ft_management_error(0, "");
 	else
 	{
 		ft_init_struct_infomap(&info_map);
-		ft_read_management(av[ac - 1], &info_map);
+		if (!ft_read_management(av[ac - 1], &info_map))
+			return (0);
 		ft_check_len_map(&info_map);
 		ft_management_programme(&info_map, &mlx);
 	}

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:49:26 by jereligi          #+#    #+#             */
-/*   Updated: 2019/12/10 18:39:25 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:23:56 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ int		ft_get_info_map(char *s, t_info *info_map)
 	else if (s[0] == 'F' || s[0] == 'C')
 		ft_get_color(s, info_map);
 	else if (s[0] == '\n' || s[0] == '\0')
-		printf("vide\n");
+		return (1);
 	else
 	{
-		ft_error(3, s);
+		ft_management_error(3, s);
 		return (0);
 	}
 	return (1);

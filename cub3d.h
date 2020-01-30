@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 11:49:58 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:14:17 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,15 @@ typedef	struct		s_info
 	char	sprite_t[256];
 	int		colorf;
 	int		colorc;
+	int		player_y;
+	int		player_x;
+	char	player_start;
 }					t_info;
 
 typedef struct		s_player
 {
-	float	posX;
 	float	posY;
+	float	posX;
 	float	x;
 	float	y;
 	double	dirX;
@@ -127,12 +130,12 @@ void	ft_draw_mini_map(t_storage *storage);
 
 /* --> ft_read_map <-- */
 void	ft_read_map(char *s, t_info *info_map);
-void	ft_read_management(char *s, t_info *info_map);
+int		ft_read_management(char *s, t_info *info_map);
 
 /* --> ft_parse_info.c <-- */
 int		ft_check_extension(char *s);
 int		ft_parse_info(t_info *info_map);
-void	ft_parse_management(t_info *info_map, t_len_map *len);
+int		ft_parse_management(t_info *info_map, t_len_map *len);
 
 /* --> ft_parse_map.c <-- */
 int		ft_parse_map_line_updown(t_info *info_map);
@@ -145,13 +148,14 @@ void	ft_get_color(char *s, t_info *info_map);
 int		ft_get_info_map(char *s, t_info *info_map);
 
 /* --> ft_error.c <-- */
-void	ft_error(int error, char *s);
+void	ft_management_error(int error, char *s);
 
 /* --> ft_init.c <-- */
 void	ft_init_struct_infomap(t_info *info_map);
 void	ft_init_struct_move(t_move *move);
 void	ft_init_struct_player(t_player *player);
 void	ft_init_struct_ray(t_ray *ray);
+void	ft_init_pos_player(t_storage *storage, t_player *player);
 
 /* --> ft_fill_map <-- */
 void	ft_check_len_map(t_info *info_map);
