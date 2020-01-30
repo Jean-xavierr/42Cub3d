@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 15:23:06 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:12:43 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int					ft_expose(t_storage	*storage)
 	storage->mlx->bpixel = storage->mlx->bpixel / 8;
 	while (i < storage->info->rx * (storage->info->ry / 2))
 	{
-		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 50;
+		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = storage->info->colorc;
 		i++;
 	}
 	while (i < storage->info->rx * (storage->info->ry))
 	{
-		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 3289700;
+		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = storage->info->colorf;
 		i++;
 	}
 	ft_raycaster(storage, storage->ray);
