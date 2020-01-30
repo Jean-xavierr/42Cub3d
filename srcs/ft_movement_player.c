@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:10 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/29 14:12:06 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:46:16 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,26 @@ void	ft_player_pos_cam(t_storage *storage, t_player *player)
 		player->dirX = player->dirX * cos(-player->rot_speed) - player->dirY * sin(-player->rot_speed);
 		player->dirY = oldDirX * sin(-player->rot_speed) + player->dirY * cos(-player->rot_speed);
 		oldPlaneX = storage->ray->planeY;
-		storage->ray->planeY = storage->ray->planeY * cos(-player->rot_speed) - storage->ray->planeX * sin(-player->rot_speed);
-		storage->ray->planeX = oldPlaneX * sin(-player->rot_speed) + storage->ray->planeX * cos(-player->rot_speed);		
+		storage->ray->planeY = storage->ray->planeY * cos(player->rot_speed) - storage->ray->planeX * sin(player->rot_speed);
+		storage->ray->planeX = oldPlaneX * sin(player->rot_speed) + storage->ray->planeX * cos(player->rot_speed);	
+		printf("oldplanex %f\n", oldPlaneX);
+		printf("rayplaney %f\n", storage->ray->planeY);
+		printf("rayplanex %f\n", storage->ray->planeX);
+		printf("\n\n");
 	}
 	if (storage->move->turn_right == 1)
 	{	
 		oldDirX = player->dirX;
 		player->dirX = player->dirX * cos(player->rot_speed) - player->dirY * sin(player->rot_speed);
 		player->dirY = oldDirX * sin(player->rot_speed) + player->dirY * cos(player->rot_speed);
+		printf("planeY after %f\n", storage->ray->planeY);
 		oldPlaneX = storage->ray->planeY;
-		storage->ray->planeY = storage->ray->planeY * cos(player->rot_speed) - storage->ray->planeX * sin(player->rot_speed);
-		storage->ray->planeX = oldPlaneX * sin(player->rot_speed) + storage->ray->planeX * cos(player->rot_speed);	
+		storage->ray->planeY = storage->ray->planeY * cos(-player->rot_speed) - storage->ray->planeX * sin(-player->rot_speed);
+		storage->ray->planeX = oldPlaneX * sin(-player->rot_speed) + storage->ray->planeX * cos(-player->rot_speed);
+		printf("dirX %f\n", player->dirX);
+		printf("oldplanex %f\n", oldPlaneX);
+		printf("rayplaney %f\n", storage->ray->planeY);
+		printf("rayplanex %f\n", storage->ray->planeX);
+		printf("\n\n");
 	}
 }	

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/29 13:48:31 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:53:36 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int					ft_expose(t_storage	*storage)
 		*(int *)&storage->mlx->data_img[i * storage->mlx->bpixel] = 3289700;
 		i++;
 	}
-	ft_raycaster(storage);
+	ft_raycaster(storage, storage->ray);
 	ft_draw_mini_map(storage);
 	//ft_move_player_mini_map(storage);
 	ft_player_pos_cam(storage, storage->player);
@@ -45,15 +45,18 @@ int		ft_management_programme(t_info *info_map, t_mlx *mlx)
 {
 	t_move		move;
 	t_player	player;
+	t_ray		ray;
 	t_storage	storage;
-
+	
 
 	ft_init_struct_move(&move);
 	ft_init_struct_player(&player);
+	ft_init_struct_ray(&ray);
 	storage.info = info_map;
 	storage.mlx = mlx;
 	storage.player = &player;
 	storage.move = &move;
+	storage.ray = &ray;
 	if ((mlx->ptr = mlx_init()) == NULL)
 		return (printf("init fail"));
 	if ((mlx->win = mlx_new_window(mlx->ptr, info_map->rx, info_map->ry, "Cub3d")) == NULL)

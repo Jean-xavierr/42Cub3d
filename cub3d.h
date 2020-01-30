@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/29 13:47:48 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:49:58 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void	ft_error(int error, char *s);
 void	ft_init_struct_infomap(t_info *info_map);
 void	ft_init_struct_move(t_move *move);
 void	ft_init_struct_player(t_player *player);
+void	ft_init_struct_ray(t_ray *ray);
 
 /* --> ft_fill_map <-- */
 void	ft_check_len_map(t_info *info_map);
@@ -167,7 +168,7 @@ void	ft_move_player_mini_map(t_storage *storage);
 void	ft_player_pos_cam(t_storage *storage, t_player *player);
 
 /* --> ft_raycaster <-- */
-void	ft_raycaster(t_storage *storage);
+void	ft_raycaster(t_storage *storage, t_ray *ray);
 
 //  ----------------
 // 	function utils.c
