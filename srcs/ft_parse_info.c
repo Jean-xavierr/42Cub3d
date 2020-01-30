@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:45:56 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 15:41:39 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 16:47:50 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_parse_info(t_info *info_map)
 	}
 	if (info_map->colorf == 0 || info_map->colorc == 0)
 	{
-		ft_management_error(4, "Error: color floor or ceil can < 256\n");
+		ft_management_error(4, "Error: color floor or ceil have to < 256\n");
 		return (0);
 	}
 	//if (!ft_check_open_texture(info_map))
@@ -104,7 +104,7 @@ int		ft_parse_management(t_info *info_map, t_len_map *len)
 	ft_putstr("parsing :\n");
 	if (!ft_parse_info(info_map))
 		return (0);
-	if (!ft_parse_map_line_updown(info_map) && !ft_parse_map_line_between(info_map, len))
+	if (!ft_parse_map_line_updown(info_map) || !ft_parse_map_line_between(info_map, len))
 	{
 		ft_management_error(5, "");
 		return (0);

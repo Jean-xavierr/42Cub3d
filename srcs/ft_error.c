@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:04:43 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 15:27:40 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 16:59:05 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,18 @@ void	ft_information_error(int error, char *s)
 		ft_putstr("Error: open(*.cub) failed\n");
 	else if (error == 3)
 	{
-		ft_putstr("Error: information no correct |");
+		ft_putstr("Error: information no correct [");
 		ft_putstr(s);
-		ft_putstr("|\n");
+		ft_putstr("]\n");
 	}	
 	else if (error == 4)
 		ft_putstr(s);
-
+	else if (error == -2)
+	{
+		ft_putstr("Error : color for floor or ceil not correct [");
+		ft_putstr(s);
+		ft_putstr("]\nExemple : F 220,100,0\n");
+	}
 }
 
 void	ft_map_error(int error)
@@ -53,7 +58,7 @@ void	ft_map_error(int error)
 
 void	ft_management_error(int error, char *s)
 {
-	if (error >= -1 && error <= 4)
+	if (error >= -2 && error <= 4)
 		ft_information_error(error, s);	
 	if (error >= 5 && error <= 8)
 		ft_map_error(error);
