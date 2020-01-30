@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:05:20 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/28 17:21:10 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 13:07:22 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void		ft_color_wall_mini_map(t_storage *storage, int y, int x, int color)
 	iy = 0;
 	ix_max = 0;
 	line = 0;
-	t_x = (storage->info->rx / 2) / storage->info->len_x;
-	t_y = (storage->info->ry / 2) / storage->info->len_y;
+	t_x = (storage->info->rx / 3) / storage->info->len_x;
+	t_y = (storage->info->ry / 3) / storage->info->len_y;
 	size_line = storage->mlx->size_line / 4;
 	line = size_line * (y * t_y);
 	ix_max = (x + 1) * t_x;

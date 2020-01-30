@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:10 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 11:46:16 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/30 13:07:33 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_move_player_mini_map(t_storage *storage)
 {
-	storage->player->x = (int)(storage->player->posX * ((storage->info->rx / 2) / storage->info->len_x));
-	storage->player->y = (int)(storage->player->posY * ((storage->info->ry / 2) / storage->info->len_y)) * storage->mlx->size_line / 4;
+	storage->player->x = (int)(storage->player->posX * ((storage->info->rx / 3) / storage->info->len_x));
+	storage->player->y = (int)(storage->player->posY * ((storage->info->ry / 3) / storage->info->len_y)) * storage->mlx->size_line / 4;
 	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + 1) * 4]) = 255;
 	//*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y) * 4]) = 255;
 	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - 1) * 4]) = 255;
