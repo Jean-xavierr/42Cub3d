@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:49:26 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 16:58:13 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/01/31 11:29:37 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,23 @@ int		ft_convert_rgb_to_integer(char *s)
 
 	i = 1;
 	n = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		if ((s[i] == '-' || s[i] == '+') || (s[i] >= '0' && s[i] <= '9'))
 		{
 			nb[n++] = ft_atoi(&s[i]);
-			if (s[i] == '-' && s[i] == '+')
+			if (s[i] == '-' || s[i] == '+')
 				i++;
 			while (s[i] >= '0' && s[i] <= '9')
 				i++;
 		}
+		else
+			i++;
 		if (n == 4)
 		{
 			ft_management_error(-2, s);
 			break ;
 		}
-		i++;
 	}
 	if (nb[0] > 255 || nb[1] > 255 || nb[2] > 255)
 		return (0);
