@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 10:36:58 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 11:53:47 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:20:02 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_draw_wall_color(t_storage *storage, t_ray *ray, int x)
 void	ft_raycaster(t_storage *storage, t_ray *ray)
 {
 	int		x;
-
+	
 	x = 0;
 	while (x < storage->info->rx)
 	{
@@ -161,6 +161,7 @@ void	ft_raycaster(t_storage *storage, t_ray *ray)
 			ray->perpwalldist = (ray->mapY - storage->player->posY + (1 - ray->stepY) / 2) / ray->raydirY;
 		}
 		ft_draw_wall_color(storage, ray, x);
+		ft_management_texture(storage, ray, x);
 		ray->hit = 0;
 		x++;
 	}

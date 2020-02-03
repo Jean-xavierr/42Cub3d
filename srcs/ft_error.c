@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:04:43 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 16:59:05 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 10:20:45 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ void	ft_management_error(int error, char *s)
 		ft_information_error(error, s);	
 	if (error >= 5 && error <= 8)
 		ft_map_error(error);
+	if (error == 9)
+		ft_putstr(s);
 }

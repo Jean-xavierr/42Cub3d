@@ -1,8 +1,8 @@
 R 640 480
-NO ./texture/map
-SO ./texture/map
-WE ./texture/map
-EA ./texture/map
+NO ./texture/colorstone.XPM
+SO ./texture/wood.XPM
+WE ./texture/greystone.XPM
+EA ./texture/mossy.XPM
 
 S ./texture/sprite
 F 50,50,140

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 15:14:17 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:49:13 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,26 @@ typedef struct		s_len_map
 	int		check;
 }					t_len_map;
 
+typedef struct		s_text_info
+{
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+	int		wallx;
+	int		x;
+	int		width;
+	int		height;
+}					t_text_info;
+
+typedef struct		s_texture
+{
+	void	*ptr;
+	void	*img;
+	int		bpixel;
+	int		size_line;
+	int		endian;
+}					t_texture;
+
 typedef	struct		s_storage
 {
 	t_info		*info;
@@ -120,6 +140,7 @@ typedef	struct		s_storage
 	t_player	*player;
 	t_move		*move;
 	t_ray		*ray;
+	t_texture	*texture;
 }					t_storage;
 
 /* --> Cub3d.c <-- */
@@ -173,6 +194,10 @@ void	ft_player_pos_cam(t_storage *storage, t_player *player);
 
 /* --> ft_raycaster <-- */
 void	ft_raycaster(t_storage *storage, t_ray *ray);
+
+/* --> ft_management_texture <-- */
+void	ft_init_texture(t_storage *storage, t_texture *texture, int w, int h);
+void	ft_management_texture(t_storage *storage, t_ray *ray, int x);
 
 //  ----------------
 // 	function utils.c

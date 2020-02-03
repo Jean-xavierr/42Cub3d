@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 17:12:43 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 11:50:30 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ft_management_programme(t_info *info_map, t_mlx *mlx)
 	t_player	player;
 	t_ray		ray;
 	t_storage	storage;
-	
+	t_texture	texture[5];	
 
 	ft_init_struct_move(&move);
 	ft_init_struct_player(&player);
@@ -61,6 +61,7 @@ int		ft_management_programme(t_info *info_map, t_mlx *mlx)
 		return (printf("init fail"));
 	if ((mlx->win = mlx_new_window(mlx->ptr, info_map->rx, info_map->ry, "Cub3d")) == NULL)
 		return (printf("windows fail"));
+	ft_init_texture(&storage, texture, 64, 64);
 	mlx_hook(mlx->win, KEYPRESS_EVENT, KEYPRESS_MASK, ft_keypress, &move);
 	mlx_hook(mlx->win, KEYRELEASE_EVENT, KEYRELEASE_MASK, ft_keyrelease, &move);
  	mlx_loop_hook(mlx->ptr, ft_expose, &storage);

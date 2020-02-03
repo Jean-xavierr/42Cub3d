@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2020/01/28 16:21:24 by jereligi         ###   ########.fr        #
+#    Updated: 2020/02/03 11:00:48 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS =	Cub3d.c \
 		ft_mini_map.c \
 		ft_exit_prog.c \
 		ft_raycaster.c \
+		ft_init_texture.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
 
