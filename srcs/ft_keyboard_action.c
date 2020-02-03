@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:57:01 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/22 14:59:15 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:33:21 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,9 @@ int					ft_keypress(int keycode, t_move *move)
 		move->sprint = 1;
 		printf ("sprint");
 	}
+	else if (keycode == 18)
+		move->texture = 1;
+	else if (keycode == 19)
+		move->texture = 0;
 	return (0);
 }

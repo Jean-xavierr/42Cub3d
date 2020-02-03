@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:40:18 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 15:42:23 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:31:27 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_init_struct_move(t_move *move)
 	move->turn_left = 0;
 	move->turn_right = 0;
 	move->sprint = 0;
+	move->texture = 0;
 }
 
 void	ft_init_struct_player(t_player *player)

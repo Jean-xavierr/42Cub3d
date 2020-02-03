@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 11:49:13 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:20:33 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct		s_move
 	int				turn_left;
 	int				turn_right;
 	int				sprint;
+	int				texture;
 }					t_move;
 
 typedef struct		s_ray
@@ -120,6 +121,7 @@ typedef struct		s_text_info
 	int		drawend;
 	int		wallx;
 	int		x;
+	int		y;
 	int		width;
 	int		height;
 }					t_text_info;
@@ -198,6 +200,9 @@ void	ft_raycaster(t_storage *storage, t_ray *ray);
 /* --> ft_management_texture <-- */
 void	ft_init_texture(t_storage *storage, t_texture *texture, int w, int h);
 void	ft_management_texture(t_storage *storage, t_ray *ray, int x);
+
+/* --> ft_memcpy <-- */
+void	*ft_memcpy(void *dst, const void *src, int n);
 
 //  ----------------
 // 	function utils.c

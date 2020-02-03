@@ -6,28 +6,36 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 10:00:17 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 11:56:32 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 14:17:13 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/*
-void	ft_draw_wall_texture(t_storage *storage, t_ray *ray, int x)
+
+void	ft_draw_wall_texture(t_storage *storage, t_texture *texture, t_text_info *text_info, t_ray *ray, int x)
 {
 	if (ray->side == 1)
 	{
 		if (ray->raydirY >= 0)
 		{
-			while (drawstart < drawend)
+			while (text_info->drawstart < text_info->drawend)
 			{
-
+				text_info->y = abs((((text_info->drawstart * 256 - storage->info->ry * 128 + text_info->lineheight * 128) * 64) / text_info->lineheight) / 256);
+				ft_memcpy(storage->mlx->data_img + 4 * storage->info->rx * text_info->drawstart + x * 4, 
+				&texture[2].img[text_info->y % 64 * texture[2].size_line + text_info->x % 64 * texture[2].bpixel / 8], sizeof(int));
+				text_info->drawstart++;
 			}
 		}
 		else
 		{
-			while (drawstart < drawend)
-			{
+			while (text_info->drawstart < text_info->drawend)
+			{	
+				text_info->y = abs((((text_info->drawstart * 256 - storage->info->ry * 128 + text_info->lineheight * 128) * 64) / text_info->lineheight) / 256);
+				ft_memcpy(storage->mlx->data_img + 4 * storage->info->rx * text_info->drawstart + x * 4, 
+				&texture[2].img[text_info->y % 64 * texture[2].size_line + text_info->x % 64 * texture[2].bpixel / 8], sizeof(int));
+				text_info->drawstart++;
+
 			}
 		}
 	}
@@ -35,19 +43,29 @@ void	ft_draw_wall_texture(t_storage *storage, t_ray *ray, int x)
 	{
 		if (ray->raydirX >= 0)
 		{
-			while (drawstart < drawend)
+			while (text_info->drawstart < text_info->drawend)
 			{
+				text_info->y = abs((((text_info->drawstart * 256 - storage->info->ry * 128 + text_info->lineheight * 128) * 64) / text_info->lineheight) / 256);
+				ft_memcpy(storage->mlx->data_img + 4 * storage->info->rx * text_info->drawstart + x * 4, 
+				&texture[2].img[text_info->y % 64 * texture[2].size_line + text_info->x % 64 * texture[2].bpixel / 8], sizeof(int));
+				text_info->drawstart++;
+
 			}
 		}
 		else
 		{
-			while (drawstart < drawend)
+			while (text_info->drawstart < text_info->drawend)
 			{
+				text_info->y = abs((((text_info->drawstart * 256 - storage->info->ry * 128 + text_info->lineheight * 128) * 64) / text_info->lineheight) / 256);
+				ft_memcpy(storage->mlx->data_img + 4 * storage->info->rx * text_info->drawstart + x * 4, 
+				&texture[2].img[text_info->y % 64 * texture[2].size_line + text_info->x % 64 * texture[2].bpixel / 8], sizeof(int));
+				text_info->drawstart++;
+
 			}
 		}
 	}
 
-}*/
+}
 
 void	ft_init_texture(t_storage *storage, t_texture *texture, int w, int h)
 {
@@ -77,8 +95,9 @@ void	ft_init_texture(t_storage *storage, t_texture *texture, int w, int h)
 
 void	ft_init_value(t_storage *storage, t_text_info *text_info, t_ray *ray)
 {
-	text_info->lineheight = (int)(storage->info->ry / storage->ray->perpwalldist);
-	text_info->lineheight *= 1;
+	text_info->width = 64;
+	text_info->height = 64;
+	text_info->lineheight = (int)(storage->info->ry / ray->perpwalldist);
 	text_info->drawstart = -text_info->lineheight / 2 + storage->info->ry / 2;
 	if (text_info->drawstart < 0)
 		text_info->drawstart = 0;
@@ -86,14 +105,14 @@ void	ft_init_value(t_storage *storage, t_text_info *text_info, t_ray *ray)
 	if (text_info->drawend >= storage->info->ry)
 		text_info->drawend = storage->info->ry - 1;	
 	if (ray->side == 0)
-		text_info->wallx = storage->player->posY + storage->ray->perpwalldist * storage->ray->raydirY;
+		text_info->wallx = storage->player->posY + ray->perpwalldist * ray->raydirY;
 	else
-		text_info->wallx = storage->player->posX + storage->ray->perpwalldist * storage->ray->raydirX;
-	text_info->wallx = floor(text_info->wallx);
+		text_info->wallx = storage->player->posX + ray->perpwalldist * ray->raydirX;
+	text_info->wallx -= floor(text_info->wallx);
 	text_info->x = (int)(text_info->wallx * (double)text_info->width);
-	if (storage->ray->side == 0 && storage->ray->raydirX > 0)
+	if (ray->side == 0 && ray->raydirX > 0)
 		text_info->x = text_info->width - text_info->x - 1;
-	if (storage->ray->side == 1 && storage->ray->raydirY < 0)
+	if (ray->side == 1 && ray->raydirY < 0)
 		text_info->x = text_info->width - text_info->x - 1;
 }
 
@@ -101,8 +120,6 @@ void	ft_management_texture(t_storage *storage, t_ray *ray, int x)
 {
 	t_text_info		text_info;
 
-	x = 5;
 	ft_init_value(storage, &text_info, ray);
-//	ft_draw_wall_texture(storage, ray, x);
-	//printf("OK NICE\n"); 
+	ft_draw_wall_texture(storage, storage->texture, &text_info, ray, x);
 }

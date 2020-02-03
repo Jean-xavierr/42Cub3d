@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 11:50:30 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:16:56 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ft_management_programme(t_info *info_map, t_mlx *mlx)
 	t_player	player;
 	t_ray		ray;
 	t_storage	storage;
-	t_texture	texture[5];	
+	t_texture	texture[5];
 
 	ft_init_struct_move(&move);
 	ft_init_struct_player(&player);
