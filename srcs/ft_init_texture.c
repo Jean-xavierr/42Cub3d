@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 10:00:17 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 14:17:13 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 15:11:16 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_draw_wall_texture(t_storage *storage, t_texture *texture, t_text_info *t
 			{
 				text_info->y = abs((((text_info->drawstart * 256 - storage->info->ry * 128 + text_info->lineheight * 128) * 64) / text_info->lineheight) / 256);
 				ft_memcpy(storage->mlx->data_img + 4 * storage->info->rx * text_info->drawstart + x * 4, 
-				&texture[2].img[text_info->y % 64 * texture[2].size_line + text_info->x % 64 * texture[2].bpixel / 8], sizeof(int));
+				&texture[1].img[text_info->y % 64 * texture[1].size_line + text_info->x % 64 * texture[1].bpixel / 8], sizeof(int));
 				text_info->drawstart++;
 			}
 		}
@@ -33,7 +33,7 @@ void	ft_draw_wall_texture(t_storage *storage, t_texture *texture, t_text_info *t
 			{	
 				text_info->y = abs((((text_info->drawstart * 256 - storage->info->ry * 128 + text_info->lineheight * 128) * 64) / text_info->lineheight) / 256);
 				ft_memcpy(storage->mlx->data_img + 4 * storage->info->rx * text_info->drawstart + x * 4, 
-				&texture[2].img[text_info->y % 64 * texture[2].size_line + text_info->x % 64 * texture[2].bpixel / 8], sizeof(int));
+				&texture[0].img[text_info->y % 64 * texture[0].size_line + text_info->x % 64 * texture[0].bpixel / 8], sizeof(int));
 				text_info->drawstart++;
 
 			}
@@ -47,7 +47,7 @@ void	ft_draw_wall_texture(t_storage *storage, t_texture *texture, t_text_info *t
 			{
 				text_info->y = abs((((text_info->drawstart * 256 - storage->info->ry * 128 + text_info->lineheight * 128) * 64) / text_info->lineheight) / 256);
 				ft_memcpy(storage->mlx->data_img + 4 * storage->info->rx * text_info->drawstart + x * 4, 
-				&texture[2].img[text_info->y % 64 * texture[2].size_line + text_info->x % 64 * texture[2].bpixel / 8], sizeof(int));
+				&texture[3].img[text_info->y % 64 * texture[3].size_line + text_info->x % 64 * texture[3].bpixel / 8], sizeof(int));
 				text_info->drawstart++;
 
 			}
@@ -114,6 +114,10 @@ void	ft_init_value(t_storage *storage, t_text_info *text_info, t_ray *ray)
 		text_info->x = text_info->width - text_info->x - 1;
 	if (ray->side == 1 && ray->raydirY < 0)
 		text_info->x = text_info->width - text_info->x - 1;
+	/*printf("drawstart %d\n", text_info->drawstart);
+	printf("drawend %d\n", text_info->drawend);
+	printf("wallX %f\n", text_info->wallx);
+	printf("textX %d\n", text_info->x);*/
 }
 
 void	ft_management_texture(t_storage *storage, t_ray *ray, int x)

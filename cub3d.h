@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 13:20:33 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/03 14:50:58 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ typedef struct		s_text_info
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
-	int		wallx;
+	double  wallx;
 	int		x;
 	int		y;
 	int		width;
