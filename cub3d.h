@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 11:49:22 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 15:26:47 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,12 @@ typedef struct		s_texture
 	int		endian;
 }					t_texture;
 
+typedef struct		s_save
+{
+
+
+}					t_save;
+
 typedef	struct		s_storage
 {
 	t_info		*info;
@@ -143,9 +149,11 @@ typedef	struct		s_storage
 	t_move		*move;
 	t_ray		*ray;
 	t_texture	*texture;
+	int			save;
 }					t_storage;
 
 /* --> Cub3d.c <-- */
+int		ft_expose(t_storage *storage);
 
 /* --> ft_mini_map.c <-- */
 void	ft_color_wall_mini_map(t_storage *storage, int y, int x, int color);
@@ -206,6 +214,9 @@ void	*ft_memcpy(void *dst, const void *src, int n);
 
 /* --> ft_strncmp <-- */
 int		ft_strncmp(const char *s1, const char *s2, int n);
+
+/* --> ft_save <-- */
+void	ft_save(t_info *info_map, t_mlx *mlx);
 
 //  ----------------
 // 	function utils.c

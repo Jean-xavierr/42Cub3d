@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:45:56 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 11:34:04 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 13:53:45 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		ft_parse_info(t_info *info_map)
 		ft_management_error(4, "Error: resolution no correct\n");
 		return (0);
 	}
+	info_map->rx = info_map->rx > 2560 ? 2560 : info_map->rx;
+	info_map->ry = info_map->ry > 1440 ? 1440 : info_map->ry;
 	if (info_map->colorf == 0 || info_map->colorc == 0)
 	{
 		ft_management_error(4, "Error: color floor or ceil have to < 256\n");

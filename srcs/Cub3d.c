@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 11:57:26 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:34:18 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int					ft_expose(t_storage	*storage)
 	ft_draw_mini_map(storage);
 	ft_player_pos_cam(storage, storage->player);
 	mlx_put_image_to_window(storage->mlx->ptr, storage->mlx->win, storage->mlx->img, 0, 0);
-	mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);
+	if (storage->save == 0)
+		mlx_destroy_image(storage->mlx->ptr, storage->mlx->img);
 	if (storage->move->esc == 1)
 		ft_exit_prog(storage);
 	return (0);
@@ -68,12 +69,14 @@ int		ft_management_programme(t_info *info_map, t_mlx *mlx)
 	mlx_loop(mlx->ptr);
 	return (0);
 }
-
+	
 int		main(int ac, char **av)
 {
 	t_info	info_map;
 	t_mlx	mlx;
+	int		save;
 
+	save = 0;
 	mlx.ptr = 0;
 	if (ac < 2)
 		ft_management_error(-1, "");
@@ -82,16 +85,26 @@ int		main(int ac, char **av)
 	else if (ac == 3)
 	{
 		if ((ft_strncmp(av[2], "--save", 7) != 0))
-			ft_management_error(9, "third argument no correct, only option --save\n");
-		return (0);
+		{
+			ft_management_error(9, "Error: third argument no correct, only option --save\n");
+			return (0);
+		}
+		else
+		{
+			write(1, "save", 4);
+			save = 1;
+		}
 	}
-	else
+	if (ac == 2 || (ac == 3 && save == 1))
 	{
 		ft_init_struct_infomap(&info_map);
-		if (!ft_read_management(av[ac - 1], &info_map))
+		if (!ft_read_management(av[1], &info_map))
 			return (0);
-		ft_check_len_map(&info_map);
-		ft_management_programme(&info_map, &mlx);
+		ft_check_len_map(&info_map);	
+		if (save == 1)
+			ft_save(&info_map, &mlx);
+		else
+			ft_management_programme(&info_map, &mlx);
 	}
 /*	printf("texture |%s|\n", info_map.north_t);
 	printf("texture |%s|\n", info_map.south_t);

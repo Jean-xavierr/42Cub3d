@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:04:43 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 11:55:58 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 12:01:36 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_information_error(int error, char *s)
 		ft_putstr(s);
 	else if (error == -2)
 	{
-		ft_putstr("Error : color for floor or ceil not correct [");
+		ft_putstr("Error: color for floor or ceil not correct [");
 		ft_putstr(s);
 		ft_putstr("]\nExemple : F 220,100,0\n");
 	}
@@ -47,13 +47,13 @@ void	ft_information_error(int error, char *s)
 void	ft_map_error(int error)
 {
 	if (error == 5)
-		ft_putstr("Error : Map no valid, the map isn't surrounded by a wall\n");
+		ft_putstr("Error: Map no valid, the map isn't surrounded by a wall\n");
 	else if (error == 6)
-		ft_putstr("Error : Character in the map no valid, put only [0,1,2,N,S,E,W]\n");
+		ft_putstr("Error: Character in the map no valid, put only [0,1,2,N,S,E,W]\n");
 	else if (error == 7)
-		ft_putstr("Error : Multiple player positions\n");
+		ft_putstr("Error: Multiple player positions\n");
 	else if (error == 8)
-		ft_putstr("Error : No player positions\n");
+		ft_putstr("Error: No player positions\n");
 }
 
 void	ft_management_error(int error, char *s)

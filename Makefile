@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2020/02/04 11:48:25 by jereligi         ###   ########.fr        #
+#    Updated: 2020/02/04 15:23:34 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS =	Cub3d.c \
 		ft_texture.c \
 		ft_memcpy.c \
 		ft_strncmp.c \
+		ft_save.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
 
