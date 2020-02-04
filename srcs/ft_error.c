@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:04:43 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 10:20:45 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 11:55:58 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_information_error(int error, char *s)
 	else if (error == 0)
 	{
 		ft_putstr("Error: To much argument, the programme can run only with");
-		ft_putstr(" file [*.cub]\n");
+		ft_putstr(" file [*.cub] and option --save\n");
 	}
 	else if (error == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 14:50:58 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 11:49:22 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,9 @@ void	ft_management_texture(t_storage *storage, t_ray *ray, int x);
 
 /* --> ft_memcpy <-- */
 void	*ft_memcpy(void *dst, const void *src, int n);
+
+/* --> ft_strncmp <-- */
+int		ft_strncmp(const char *s1, const char *s2, int n);
 
 //  ----------------
 // 	function utils.c

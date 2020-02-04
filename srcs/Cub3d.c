@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 13:16:56 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 11:57:26 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,14 @@ int		main(int ac, char **av)
 	mlx.ptr = 0;
 	if (ac < 2)
 		ft_management_error(-1, "");
-	else if (ac > 2)
+	else if (ac > 3)
 		ft_management_error(0, "");
+	else if (ac == 3)
+	{
+		if ((ft_strncmp(av[2], "--save", 7) != 0))
+			ft_management_error(9, "third argument no correct, only option --save\n");
+		return (0);
+	}
 	else
 	{
 		ft_init_struct_infomap(&info_map);
