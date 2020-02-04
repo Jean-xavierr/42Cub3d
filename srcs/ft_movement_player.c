@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:10 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 17:21:52 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 10:48:13 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,8 @@ void	ft_player_pos_cam(t_storage *storage, t_player *player)
 		storage->ray->planeY = storage->ray->planeY * cos(-player->rot_speed) - storage->ray->planeX * sin(-player->rot_speed);
 		storage->ray->planeX = oldPlaneX * sin(-player->rot_speed) + storage->ray->planeX * cos(-player->rot_speed);
 	}
+	if (storage->move->sprint == 1)
+		player->move_speed = 0.12;
+	if (storage->move->sprint == 0)
+		player->move_speed = 0.07;
 }	

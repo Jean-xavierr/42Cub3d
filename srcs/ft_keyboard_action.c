@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:57:01 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 13:33:21 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/04 10:42:49 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int					ft_keyrelease(int keycode, t_move *move)
 	else if (keycode == 124)
 		move->turn_right = 0;
 	else if (keycode == 257)
-		move->sprint = 1;
+		move->sprint = 0;
 	printf("0");
 	return (0);
 }

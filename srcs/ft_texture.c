@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_texture.c                                  :+:      :+:    :+:   */
+/*   ft_texture.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/03 10:00:17 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 15:11:16 by jereligi         ###   ########.fr       */
+/*   Created: 2020/02/03 15:34:18 by jereligi          #+#    #+#             */
+/*   Updated: 2020/02/03 15:35:38 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,6 @@ void	ft_init_value(t_storage *storage, t_text_info *text_info, t_ray *ray)
 		text_info->x = text_info->width - text_info->x - 1;
 	if (ray->side == 1 && ray->raydirY < 0)
 		text_info->x = text_info->width - text_info->x - 1;
-	/*printf("drawstart %d\n", text_info->drawstart);
-	printf("drawend %d\n", text_info->drawend);
-	printf("wallX %f\n", text_info->wallx);
-	printf("textX %d\n", text_info->x);*/
 }
 
 void	ft_management_texture(t_storage *storage, t_ray *ray, int x)
