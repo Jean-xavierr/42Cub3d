@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:34:18 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 15:07:27 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:49:59 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_draw_wall_texture(t_storage *storage, t_texture *texture, t_text_info *t
 
 }
 
-void	ft_init_texture(t_storage *storage, t_texture *texture, int w, int h)
+int		ft_init_texture(t_storage *storage, t_texture *texture, int w, int h)
 {
 	if ((texture[0].ptr = mlx_xpm_file_to_image(storage->mlx->ptr, storage->info->north_t, &w, &h)) == NULL)
 		return (ft_management_error(9, "Error : corruption texture north\n"));
@@ -91,6 +91,7 @@ void	ft_init_texture(t_storage *storage, t_texture *texture, int w, int h)
 	if (texture[3].img == NULL)
 		return (ft_management_error(9, "Error : corruption texture east\n"));
 	storage->texture = texture;
+	return (0);
 }
 
 void	ft_init_value(t_storage *storage, t_text_info *text_info, t_ray *ray)

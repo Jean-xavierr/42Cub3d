@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 10:50:24 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:44:16 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct		s_player
 	float	y;
 	double	dirX;
 	double	dirY;
-	double	move_speed;
+	double	ms;
 	double	rot_speed;
 }					t_player;
 	
@@ -126,6 +126,16 @@ typedef struct		s_text_info
 	int		height;
 }					t_text_info;
 
+typedef struct		s_mini_map
+{
+	int		y;
+	int		x;
+	int		x_max;
+	int		t_x;
+	int		t_y;
+	int		line;
+}					t_mini_map;
+
 typedef struct		s_texture
 {
 	void	*ptr;
@@ -165,7 +175,7 @@ void	ft_color_wall_mini_map(t_storage *storage, int y, int x, int color);
 void	ft_draw_mini_map(t_storage *storage);
 
 /* --> ft_read_map <-- */
-void	ft_read_map(char *s, t_info *info_map);
+int		ft_read_map(char *s, t_info *info_map);
 int		ft_read_management(char *s, t_info *info_map);
 
 /* --> ft_parse_info.c <-- */
@@ -184,7 +194,7 @@ void	ft_get_color(char *s, t_info *info_map);
 int		ft_get_info_map(char *s, t_info *info_map);
 
 /* --> ft_error.c <-- */
-void	ft_management_error(int error, char *s);
+int		ft_management_error(int error, char *s);
 
 /* --> ft_init.c <-- */
 void	ft_init_struct_infomap(t_info *info_map);
@@ -211,7 +221,7 @@ void	ft_player_pos_cam(t_storage *storage, t_player *player);
 void	ft_raycaster(t_storage *storage, t_ray *ray);
 
 /* --> ft_management_texture <-- */
-void	ft_init_texture(t_storage *storage, t_texture *texture, int w, int h);
+int		ft_init_texture(t_storage *storage, t_texture *texture, int w, int h);
 void	ft_management_texture(t_storage *storage, t_ray *ray, int x);
 
 /* --> ft_memcpy <-- */
@@ -222,6 +232,9 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 
 /* --> ft_save <-- */
 void	ft_save(t_info *info_map, t_mlx *mlx);
+
+/* --> ft_utils_2 <-- */
+int		ft_get_pos_player(t_info *info_map, int i, int x);
 
 //  ----------------
 // 	function utils.c

@@ -5,77 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 16:00:10 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 10:48:13 by jereligi         ###   ########.fr       */
+/*   Created: 2020/02/05 13:47:58 by jereligi          #+#    #+#             */
+/*   Updated: 2020/02/05 14:25:03 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_move_player_mini_map(t_storage *storage)
+void	ft_move_player_mini_map(t_storage *s)
 {
-	storage->player->x = (int)(storage->player->posX * ((storage->info->rx / 3) / storage->info->len_x));
-	storage->player->y = (int)(storage->player->posY * ((storage->info->ry / 3) / storage->info->len_y)) * storage->mlx->size_line / 4;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + 1) * 4]) = 255;
-	//*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y) * 4]) = 255;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - 1) * 4]) = 255;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y + (storage->mlx->size_line / 4)) * 4]) = 255;
-	*(int *)(&storage->mlx->data_img[(int)(storage->player->x + storage->player->y - (storage->mlx->size_line / 4)) * 4]) = 255;
+	s->player->x = (int)(s->player->posX * ((s->info->rx / 3) /
+	s->info->len_x));
+	s->player->y = (int)(s->player->posY * ((s->info->ry / 3) / s->info->len_y))
+	* s->mlx->size_line / 4;
+	*(int *)(&s->mlx->data_img[(int)(s->player->x + s->player->y + 1) *
+	4]) = 255;
+	*(int *)(&s->mlx->data_img[(int)(s->player->x + s->player->y - 1) *
+	4]) = 255;
+	*(int *)(&s->mlx->data_img[(int)(s->player->x + s->player->y +
+	(s->mlx->size_line / 4)) * 4]) = 255;
+	*(int *)(&s->mlx->data_img[(int)(s->player->x + s->player->y -
+	(s->mlx->size_line / 4)) * 4]) = 255;
 }
 
-void	ft_player_pos_cam(t_storage *storage, t_player *player)
+void	ft_player_pos_x(t_storage *s, t_player *p)
 {
-	double	oldDirX;
-	double	oldPlaneX;
+	if (s->move->left == 1)
+	{
+		if (s->info->map[(int)(p->posY)][(int)(p->posX - s->ray->planeX
+		* p->ms)] != '1')
+			p->posX = p->posX - s->ray->planeX * p->ms;
+		if (s->info->map[(int)(p->posY - s->ray->planeY * p->ms)]
+		[(int)(p->posX)] != '1')
+			p->posY = p->posY - s->ray->planeY * p->ms;
+	}
+	if (s->move->right == 1)
+	{
+		if (s->info->map[(int)(p->posY)][(int)(p->posX + s->ray->planeX
+		* p->ms)] != '1')
+			p->posX = p->posX + s->ray->planeX * p->ms;
+		if (s->info->map[(int)(p->posY + s->ray->planeY * p->ms)]
+		[(int)(p->posX)] != '1')
+			p->posY = p->posY + s->ray->planeY * p->ms;
+	}
+}
 
-	if (storage->move->foward == 1)
+void	ft_player_pos_dir(t_storage *s, t_player *p)
+{
+	double	old_dirx;
+	double	old_planex;
+
+	if (s->move->turn_left == 1)
 	{
-		if (storage->info->map[(int)(player->posY)][(int)(player->posX + player->dirX * player->move_speed)] != '1')
-			player->posX += player->dirX * player->move_speed;
-		if (storage->info->map[(int)(player->posY + player->dirY * player->move_speed)][(int)(player->posX)] != '1')
-			player->posY += player->dirY * player->move_speed;
+		old_dirx = p->dirX;
+		p->dirX = p->dirX * cos(-p->rot_speed) - p->dirY * sin(-p->rot_speed);
+		p->dirY = old_dirx * sin(-p->rot_speed) + p->dirY * cos(-p->rot_speed);
+		old_planex = s->ray->planeY;
+		s->ray->planeY = s->ray->planeY * cos(p->rot_speed) - s->ray->planeX
+		* sin(p->rot_speed);
+		s->ray->planeX = old_planex * sin(p->rot_speed) + s->ray->planeX
+		* cos(p->rot_speed);
 	}
-	if (storage->move->retreat == 1)
+	if (s->move->turn_right == 1)
 	{
-		if (storage->info->map[(int)(player->posY)][(int)(player->posX - player->dirX * player->move_speed)] != '1')
-			player->posX -= player->dirX * player->move_speed;
-		if (storage->info->map[(int)(player->posY - player->dirY * player->move_speed)][(int)(player->posX)] != '1')
-			player->posY -= player->dirY * player->move_speed;
+		old_dirx = p->dirX;
+		p->dirX = p->dirX * cos(p->rot_speed) - p->dirY * sin(p->rot_speed);
+		p->dirY = old_dirx * sin(p->rot_speed) + p->dirY * cos(p->rot_speed);
+		old_planex = s->ray->planeY;
+		s->ray->planeY = s->ray->planeY * cos(-p->rot_speed) - s->ray->planeX
+		* sin(-p->rot_speed);
+		s->ray->planeX = old_planex * sin(-p->rot_speed) + s->ray->planeX
+		* cos(-p->rot_speed);
 	}
-	if (storage->move->left == 1)
+}
+
+void	ft_player_pos_cam(t_storage *s, t_player *p)
+{
+	if (s->move->foward == 1)
 	{
-		if (storage->info->map[(int)(player->posY)][(int)(player->posX - storage->ray->planeX * player->move_speed)] != '1')
-			player->posX = player->posX - storage->ray->planeX * player->move_speed;
-		if (storage->info->map[(int)(player->posY - storage->ray->planeY * player->move_speed)][(int)(player->posX)] != '1')
-			player->posY = player->posY - storage->ray->planeY * player->move_speed;
+		if (s->info->map[(int)(p->posY)][(int)(p->posX + p->dirX
+		* p->ms)] != '1')
+			p->posX += p->dirX * p->ms;
+		if (s->info->map[(int)(p->posY + p->dirY * p->ms)]
+		[(int)(p->posX)] != '1')
+			p->posY += p->dirY * p->ms;
 	}
-	if (storage->move->right == 1)
+	if (s->move->retreat == 1)
 	{
-		if (storage->info->map[(int)(player->posY)][(int)(player->posX + storage->ray->planeX * player->move_speed)] != '1')
-			player->posX = player->posX + storage->ray->planeX * player->move_speed;
-		if (storage->info->map[(int)(player->posY + storage->ray->planeY * player->move_speed)][(int)(player->posX)] != '1')
-			player->posY = player->posY + storage->ray->planeY * player->move_speed;
+		if (s->info->map[(int)(p->posY)][(int)(p->posX - p->dirX
+		* p->ms)] != '1')
+			p->posX -= p->dirX * p->ms;
+		if (s->info->map[(int)(p->posY - p->dirY * p->ms)]
+		[(int)(p->posX)] != '1')
+			p->posY -= p->dirY * p->ms;
 	}
-	if (storage->move->turn_left == 1)
-	{	
-		oldDirX = player->dirX;
-		player->dirX = player->dirX * cos(-player->rot_speed) - player->dirY * sin(-player->rot_speed);
-		player->dirY = oldDirX * sin(-player->rot_speed) + player->dirY * cos(-player->rot_speed);
-		oldPlaneX = storage->ray->planeY;
-		storage->ray->planeY = storage->ray->planeY * cos(player->rot_speed) - storage->ray->planeX * sin(player->rot_speed);
-		storage->ray->planeX = oldPlaneX * sin(player->rot_speed) + storage->ray->planeX * cos(player->rot_speed);	
-	}
-	if (storage->move->turn_right == 1)
-	{	
-		oldDirX = player->dirX;
-		player->dirX = player->dirX * cos(player->rot_speed) - player->dirY * sin(player->rot_speed);
-		player->dirY = oldDirX * sin(player->rot_speed) + player->dirY * cos(player->rot_speed);
-		oldPlaneX = storage->ray->planeY;
-		storage->ray->planeY = storage->ray->planeY * cos(-player->rot_speed) - storage->ray->planeX * sin(-player->rot_speed);
-		storage->ray->planeX = oldPlaneX * sin(-player->rot_speed) + storage->ray->planeX * cos(-player->rot_speed);
-	}
-	if (storage->move->sprint == 1)
-		player->move_speed = 0.12;
-	if (storage->move->sprint == 0)
-		player->move_speed = 0.07;
-}	
+	ft_player_pos_x(s, p);
+	ft_player_pos_dir(s, p);
+	if (s->move->sprint == 1)
+		p->ms = 0.12;
+	if (s->move->sprint == 0)
+		p->ms = 0.07;
+}

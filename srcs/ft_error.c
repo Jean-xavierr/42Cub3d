@@ -6,13 +6,13 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:04:43 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 12:01:36 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:15:23 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_information_error(int error, char *s)
+void	ft_information_start(int error)
 {
 	if (error == -1)
 		ft_putstr("Error: The programme cannot run without file [*.cub]\n");
@@ -28,15 +28,19 @@ void	ft_information_error(int error, char *s)
 	}
 	else if (error == 2)
 		ft_putstr("Error: open(*.cub) failed\n");
-	else if (error == 3)
+	else if (error == 10)
+		ft_putstr("Error: third argument no correct, only optin --save\n");
+}
+
+void	ft_information_error(int error, char *s)
+{
+	if (error == 3)
 	{
 		ft_putstr("Error: information no correct [");
 		ft_putstr(s);
 		ft_putstr("]\n");
-	}	
+	}
 	else if (error == 4)
-		ft_putstr(s);
-	else if (error == -2)
 	{
 		ft_putstr("Error: color for floor or ceil not correct [");
 		ft_putstr(s);
@@ -49,19 +53,25 @@ void	ft_map_error(int error)
 	if (error == 5)
 		ft_putstr("Error: Map no valid, the map isn't surrounded by a wall\n");
 	else if (error == 6)
-		ft_putstr("Error: Character in the map no valid, put only [0,1,2,N,S,E,W]\n");
+	{
+		ft_putstr("Error: Character in the map no valid, ");
+		ft_putstr("put only [0,1,2,N,S,E,W]\n");
+	}
 	else if (error == 7)
 		ft_putstr("Error: Multiple player positions\n");
 	else if (error == 8)
 		ft_putstr("Error: No player positions\n");
 }
 
-void	ft_management_error(int error, char *s)
+int		ft_management_error(int error, char *s)
 {
-	if (error >= -2 && error <= 4)
-		ft_information_error(error, s);	
+	if (error >= -2 && error <= 2)
+		ft_information_start(error);
+	if (error == 3 || error == 4)
+		ft_information_error(error, s);
 	if (error >= 5 && error <= 8)
 		ft_map_error(error);
 	if (error == 9)
 		ft_putstr(s);
+	return (0);
 }

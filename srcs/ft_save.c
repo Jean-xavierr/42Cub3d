@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:29 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 10:50:33 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:28:07 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		ft_write_texture_bmp_file(t_storage *storage, int fd)
 		line = storage->info->rx * (storage->info->ry - y);
 		while (x < storage->info->rx)
 		{
-			write(fd, &storage->mlx->data_img[line* 4], 4);
+			write(fd, &storage->mlx->data_img[line * 4], 4);
 			line++;
 			x++;
 		}
@@ -67,7 +67,7 @@ void		ft_write_bmp_file(t_storage *storage)
 	write(s.fd, &s.unused, sizeof(int));
 	write(s.fd, &s.unused, sizeof(int));
 	ft_write_texture_bmp_file(storage, s.fd);
-	//close(fd);
+	close(s.fd);
 }
 
 void		ft_save(t_info *info_map, t_mlx *mlx)
@@ -90,10 +90,11 @@ void		ft_save(t_info *info_map, t_mlx *mlx)
 	storage.save = 1;
 	if ((mlx->ptr = mlx_init()) == NULL)
 		ft_management_error(9, "Error: init mlx fail\n");
-	if ((mlx->win = mlx_new_window(mlx->ptr, info_map->rx, info_map->ry, "Save")) == NULL)
+	if ((mlx->win = mlx_new_window(mlx->ptr, info_map->rx,
+		info_map->ry, "Save")) == NULL)
 		ft_management_error(9, "Error: Windows fail\n");
 	ft_init_texture(&storage, texture, 64, 64);
 	write(1, "AR", 2);
 	ft_expose(&storage);
-	ft_write_bmp_file(&storage);	
+	ft_write_bmp_file(&storage);
 }

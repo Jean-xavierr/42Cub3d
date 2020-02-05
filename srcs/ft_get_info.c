@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:49:26 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/31 11:29:37 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:58:05 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		ft_convert_rgb_to_integer(char *s)
 			i++;
 		if (n == 4)
 		{
-			ft_management_error(-2, s);
+			ft_management_error(4, s);
 			break ;
 		}
 	}

@@ -6,40 +6,34 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:05:20 by jereligi          #+#    #+#             */
-/*   Updated: 2020/01/30 13:07:22 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:17:54 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		ft_color_wall_mini_map(t_storage *storage, int y, int x, int color)
+void	ft_color_wall_mini_map(t_storage *storage, int y, int x, int color)
 {
-	int		iy;
-	int		ix;
-	int		ix_max;
-	int		t_x;
-	int		t_y;
-	int 	line;
-	int		size_line;
+	t_mini_map	mini_map;
 
-	iy = 0;
-	ix_max = 0;
-	line = 0;
-	t_x = (storage->info->rx / 3) / storage->info->len_x;
-	t_y = (storage->info->ry / 3) / storage->info->len_y;
-	size_line = storage->mlx->size_line / 4;
-	line = size_line * (y * t_y);
-	ix_max = (x + 1) * t_x;
-	while (iy < t_y)
+	mini_map.y = 0;
+	mini_map.x_max = 0;
+	mini_map.line = 0;
+	mini_map.t_x = (storage->info->rx / 3) / storage->info->len_x;
+	mini_map.t_y = (storage->info->ry / 3) / storage->info->len_y;
+	mini_map.line = storage->info->rx * (y * mini_map.t_y);
+	mini_map.x_max = (x + 1) * mini_map.t_x;
+	while (mini_map.y < mini_map.t_y)
 	{
-		ix = x * t_x;
-		while (ix < ix_max)
+		mini_map.x = x * mini_map.t_x;
+		while (mini_map.x < mini_map.x_max)
 		{
-			*(int *)(&storage->mlx->data_img[(line + ix) * storage->mlx->bpixel]) = color;
-			ix++;
+			*(int *)(&storage->mlx->data_img[(mini_map.line + mini_map.x)
+			* storage->mlx->bpixel]) = color;
+			mini_map.x++;
 		}
-		line = line + size_line;
-		iy++;
+		mini_map.line += storage->info->rx;
+		mini_map.y++;
 	}
 }
 
