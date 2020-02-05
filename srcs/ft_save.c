@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:29 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 18:53:36 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 10:41:12 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 void		ft_write_texture_bmp_file(t_storage *storage, int fd)
 {
+	int		y;
 	int		x;
+	int		line;
 
-	x = 0;
-	while (x < storage->info->rx * storage->info->ry)
+	y = 0;
+	while (y < storage->info->ry)
 	{
-		write(fd, &storage->mlx->data_img[x * 4], 4);
-		x++;
+		x = 0;
+		line = storage->info->rx * (storage->info->ry - y);
+		while (x < storage->info->rx)
+		{
+			write(fd, &storage->mlx->data_img[line* 4], 4);
+			line++;
+			x++;
+		}
+		y++;
 	}
 }
 
