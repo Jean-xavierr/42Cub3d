@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 13:44:16 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:49:21 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 
 /* --> structure <-- */
 
+typedef struct		s_sprite
+{
+	double	x;
+	double	y;
+	int		texture;
+}					t_sprite;
+
 typedef	struct		s_info
 {
 	char	**map;
@@ -49,6 +56,8 @@ typedef	struct		s_info
 	int		player_y;
 	int		player_x;
 	char	player_start;
+	int		sprite_nb;
+	t_sprite	*sprite;
 }					t_info;
 
 typedef struct		s_player
@@ -126,6 +135,15 @@ typedef struct		s_text_info
 	int		height;
 }					t_text_info;
 
+typedef struct		s_texture
+{
+	void	*ptr;
+	void	*img;
+	int		bpixel;
+	int		size_line;
+	int		endian;
+}					t_texture;
+
 typedef struct		s_mini_map
 {
 	int		y;
@@ -135,15 +153,6 @@ typedef struct		s_mini_map
 	int		t_y;
 	int		line;
 }					t_mini_map;
-
-typedef struct		s_texture
-{
-	void	*ptr;
-	void	*img;
-	int		bpixel;
-	int		size_line;
-	int		endian;
-}					t_texture;
 
 typedef struct		s_save
 {
@@ -233,8 +242,13 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 /* --> ft_save <-- */
 void	ft_save(t_info *info_map, t_mlx *mlx);
 
-/* --> ft_utils_2 <-- */
+/* --> ft_parse_info_2 <-- */
 int		ft_get_pos_player(t_info *info_map, int i, int x);
+void	ft_get_sprite_nb(t_info *info_map);
+void	ft_get_pos_sprite(t_info *info_map);
+
+/* --> ft_sprite <-- */
+void	ft_management_sprite(t_storage *s, t_sprite *sprite, int sprite_nb);
 
 //  ----------------
 // 	function utils.c

@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2020/02/05 13:35:20 by jereligi         ###   ########.fr        #
+#    Updated: 2020/02/05 16:43:37 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ PATH = ./srcs/
 SRCS =	ft_cub3d.c \
 		ft_read_map.c \
 		ft_parse_info.c \
+		ft_parse_info_2.c \
 		ft_parse_map.c \
 		ft_get_info.c \
 		ft_error.c \
 		ft_init.c \
 		ft_utils.c \
-		ft_utils_2.c \
 		ft_split.c \
 		ft_strdup_map.c \
 		ft_strcpy.c \
@@ -38,6 +38,7 @@ SRCS =	ft_cub3d.c \
 		ft_memcpy.c \
 		ft_strncmp.c \
 		ft_save.c \
+		ft_sprite.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
 

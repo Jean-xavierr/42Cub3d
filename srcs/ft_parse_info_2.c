@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_2.c                                       :+:      :+:    :+:   */
+/*   ft_parse_info_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/05 13:31:22 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 13:37:03 by jereligi         ###   ########.fr       */
+/*   Created: 2020/02/05 16:00:07 by jereligi          #+#    #+#             */
+/*   Updated: 2020/02/05 16:20:42 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,50 @@ int		ft_get_pos_player(t_info *info_map, int i, int x)
 	else
 		return (ft_management_error(7, ""));
 	return (1);
+}
+
+void	ft_get_sprite_nb(t_info *info_map)
+{
+	int		y;
+	int		x;
+	
+	y = 0;
+	while (info_map->map[y])
+	{
+		x = 0;
+		while (info_map->map[y][x])
+		{
+			if (info_map->map[y][x] == '2')
+				info_map->sprite_nb++;
+			x++;
+		}
+		y++;
+	}
+}
+
+void	ft_get_pos_sprite(t_info *info_map)
+{
+	int			y;
+	int			x;
+	int			n;
+	t_sprite	sprite[info_map->sprite_nb];
+		
+	y = 0;
+	n = 0;
+	while (info_map->map[y])
+	{
+		x = 0;
+		while (info_map->map[y][x])
+		{
+			if (info_map->map[y][x] == '2')
+			{
+				sprite[n].x = x;
+				sprite[n].y = y;
+				n++;
+			}
+			x++;
+		}
+		y++;
+	}
+	info_map->sprite = sprite;
 }

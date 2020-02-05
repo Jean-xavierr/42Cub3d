@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 13:00:55 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:47:58 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		ft_expose(t_storage *s)
 	while (i < s->info->rx * (s->info->ry))
 		*(int *)&s->mlx->data_img[i++ * s->mlx->bpixel] = s->info->colorf;
 	ft_raycaster(s, s->ray);
+	ft_management_sprite(s, s->info->sprite, s->info->sprite_nb);
 	ft_draw_mini_map(s);
 	ft_player_pos_cam(s, s->player);
 	mlx_put_image_to_window(s->mlx->ptr, s->mlx->win, s->mlx->img, 0, 0);
@@ -44,6 +45,9 @@ int		ft_management_program(t_info *map, t_mlx *mlx)
 	t_storage	storage;
 	t_texture	texture[5];
 
+	printf("sprite %d\n", map->sprite_nb);
+	printf("sprite 1x :%f\n", map->sprite[0].x);
+	printf("sprite 1y :%f\n", map->sprite[0].y);
 	ft_init_struct_move(&move);
 	ft_init_struct_player(&player);
 	ft_init_struct_ray(&ray);
@@ -68,12 +72,14 @@ int		ft_management_program(t_info *map, t_mlx *mlx)
 
 int		ft_init_program(int save, char **av, t_mlx mlx)
 {
-	t_info	info_map;
+	t_info		info_map;
 
 	ft_init_struct_infomap(&info_map);
 	if (!ft_read_management(av[1], &info_map))
 		return (0);
 	ft_check_len_map(&info_map);
+	ft_get_sprite_nb(&info_map);
+	ft_get_pos_sprite(&info_map);
 	if (save == 1)
 		ft_save(&info_map, &mlx);
 	else

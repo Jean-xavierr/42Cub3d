@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:40:18 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 13:44:29 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 16:08:27 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_init_struct_infomap(t_info *info_map)
 	info_map->player_x = 0;
 	info_map->player_y = 0;
 	info_map->player_start = '0';
+	info_map->sprite_nb = 0;
 }
 
 void	ft_init_struct_move(t_move *move)
