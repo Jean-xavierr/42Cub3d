@@ -6,11 +6,24 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:29 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 10:41:12 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 10:50:33 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void		ft_init_struct_save(t_storage *storage, t_save *s)
+{
+	s->size = 54 + 4 * storage->info->rx * storage->info->ry;
+	s->unused = 0;
+	s->offset_begin = 54;
+	s->header_bytes = 40;
+	s->plane = 1;
+	s->bpixel = 32;
+	s->fd = open("img.bmp", O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
+	if (s->fd == -1)
+		ft_management_error(9, "Error: open file .bmp\n");
+}
 
 void		ft_write_texture_bmp_file(t_storage *storage, int fd)
 {
@@ -35,45 +48,30 @@ void		ft_write_texture_bmp_file(t_storage *storage, int fd)
 
 void		ft_write_bmp_file(t_storage *storage)
 {
-	int				fd;
-	int				size;
-	int				unused;
-	int				offset_begin;
-	int				header_bytes;
-	short int		plane;
-	short int		bpixel;
+	t_save	s;
 
-	size = 54 + 4 * storage->info->rx * storage->info->ry;
-	unused = 0;
-	offset_begin = 54;
-	header_bytes = 40;
-	plane = 1;
-	bpixel = 32;
-	fd = open("img.bmp", O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
-	if (fd == -1)
-		ft_management_error(9, "Error: open file .bmp\n");
-	write(fd, "BM", 2);
-	write(fd, &size, sizeof(int));
-	write(fd, &unused, sizeof(int));
-	write(fd, &offset_begin, sizeof(int));
-	write(fd, &header_bytes, sizeof(int));
-	write(fd, &storage->info->rx, sizeof(int));
-	write(fd, &storage->info->ry, sizeof(int));
-	write(fd, &plane, sizeof(short int));
-	write(fd, &bpixel, sizeof(short int));
-	write(fd, &unused, sizeof(int));
-	write(fd, &unused, sizeof(int));
-	write(fd, &unused, sizeof(int));
-	write(fd, &unused, sizeof(int));
-	write(fd, &unused, sizeof(int));
-	write(fd, &unused, sizeof(int));
-	ft_write_texture_bmp_file(storage, fd);
+	ft_init_struct_save(storage, &s);
+	write(s.fd, "BM", 2);
+	write(s.fd, &s.size, sizeof(int));
+	write(s.fd, &s.unused, sizeof(int));
+	write(s.fd, &s.offset_begin, sizeof(int));
+	write(s.fd, &s.header_bytes, sizeof(int));
+	write(s.fd, &storage->info->rx, sizeof(int));
+	write(s.fd, &storage->info->ry, sizeof(int));
+	write(s.fd, &s.plane, sizeof(short int));
+	write(s.fd, &s.bpixel, sizeof(short int));
+	write(s.fd, &s.unused, sizeof(int));
+	write(s.fd, &s.unused, sizeof(int));
+	write(s.fd, &s.unused, sizeof(int));
+	write(s.fd, &s.unused, sizeof(int));
+	write(s.fd, &s.unused, sizeof(int));
+	write(s.fd, &s.unused, sizeof(int));
+	ft_write_texture_bmp_file(storage, s.fd);
 	//close(fd);
 }
 
 void		ft_save(t_info *info_map, t_mlx *mlx)
 {
-//	t_save		save;
 	t_move		move;
 	t_player	player;
 	t_ray		ray;

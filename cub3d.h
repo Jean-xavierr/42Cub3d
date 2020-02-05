@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/04 15:26:47 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/05 10:50:24 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,13 @@ typedef struct		s_texture
 
 typedef struct		s_save
 {
-
-
+	int			fd;
+	int			size;
+	int			unused;
+	int			offset_begin;
+	int			header_bytes;
+	short int	plane;
+	short int	bpixel;
 }					t_save;
 
 typedef	struct		s_storage
