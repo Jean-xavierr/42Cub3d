@@ -1,4 +1,4 @@
-R 640 480
+R 640 500
 NO ./texture/colorstone.XPM
 SO ./texture/wood.XPM
 WE ./texture/greystone.XPM
