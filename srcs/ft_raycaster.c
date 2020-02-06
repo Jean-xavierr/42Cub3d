@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 10:36:58 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/03 15:46:07 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/06 12:00:43 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_raycaster(t_storage *storage, t_ray *ray)
 	int		x;
 	
 	x = 0;
+	storage->zbuffer = malloc(sizeof(double) * storage->info->rx);
 	while (x < storage->info->rx)
 	{
 		ray->camX = 2 * x / (double)storage->info->rx - 1;
@@ -133,6 +134,7 @@ void	ft_raycaster(t_storage *storage, t_ray *ray)
 		{
 			ray->perpwalldist = (ray->mapY - storage->player->posY + (1 - ray->stepY) / 2) / ray->raydirY;
 		}
+		storage->zbuffer[x] = ray->perpwalldist;
 		if (storage->move->texture == 0)
 			ft_draw_wall_color(storage, ray, x);
 		else

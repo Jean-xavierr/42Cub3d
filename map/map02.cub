@@ -4,7 +4,7 @@ SO ./texture/wood.XPM
 WE ./texture/greystone.XPM
 EA ./texture/mossy.XPM
 
-S ./texture/sprite
+S ./texture/barrel.XPM
 F 50,50,140
 C 0,0,50
 

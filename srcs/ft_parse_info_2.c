@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:00:07 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 16:20:42 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/06 14:16:46 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,11 @@ void	ft_get_sprite_nb(t_info *info_map)
 	}
 }
 
-void	ft_get_pos_sprite(t_info *info_map)
+void	ft_get_pos_sprite(t_info *info_map, t_storage *storage)
 {
 	int			y;
 	int			x;
 	int			n;
-	t_sprite	sprite[info_map->sprite_nb];
 		
 	y = 0;
 	n = 0;
@@ -61,13 +60,12 @@ void	ft_get_pos_sprite(t_info *info_map)
 		{
 			if (info_map->map[y][x] == '2')
 			{
-				sprite[n].x = x;
-				sprite[n].y = y;
+				storage->sprite[n].x = (double)x;
+				storage->sprite[n].y = (double)y;
 				n++;
 			}
 			x++;
 		}
 		y++;
 	}
-	info_map->sprite = sprite;
 }

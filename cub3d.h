@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 16:49:21 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:50:19 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,28 @@ typedef struct		s_sprite
 {
 	double	x;
 	double	y;
-	int		texture;
 }					t_sprite;
+
+typedef struct		s_sprite_info
+{
+	double	x;
+	double	y;
+	double	inv_det;
+	double	transformx;
+	double	transformy;
+	int		screen_x;
+	int		height;
+	int		drawstart_y;
+	int		drawend_y;
+	int		width;
+	int		drawstart_x;
+	int		drawend_x;
+	int		texwidth;
+	int		texheight;
+	int		texx;
+	int		texy;
+	int		texture;
+}					t_sprite_info;
 
 typedef	struct		s_info
 {
@@ -57,13 +77,12 @@ typedef	struct		s_info
 	int		player_x;
 	char	player_start;
 	int		sprite_nb;
-	t_sprite	*sprite;
 }					t_info;
 
 typedef struct		s_player
 {
-	float	posY;
-	float	posX;
+	double	posY;
+	double	posX;
 	float	x;
 	float	y;
 	double	dirX;
@@ -138,7 +157,7 @@ typedef struct		s_text_info
 typedef struct		s_texture
 {
 	void	*ptr;
-	void	*img;
+	char	*img;
 	int		bpixel;
 	int		size_line;
 	int		endian;
@@ -173,6 +192,8 @@ typedef	struct		s_storage
 	t_move		*move;
 	t_ray		*ray;
 	t_texture	*texture;
+	t_sprite	sprite[50];
+	double		*zbuffer;
 	int			save;
 }					t_storage;
 
@@ -245,7 +266,7 @@ void	ft_save(t_info *info_map, t_mlx *mlx);
 /* --> ft_parse_info_2 <-- */
 int		ft_get_pos_player(t_info *info_map, int i, int x);
 void	ft_get_sprite_nb(t_info *info_map);
-void	ft_get_pos_sprite(t_info *info_map);
+void	ft_get_pos_sprite(t_info *info_map, t_storage *storage);
 
 /* --> ft_sprite <-- */
 void	ft_management_sprite(t_storage *s, t_sprite *sprite, int sprite_nb);

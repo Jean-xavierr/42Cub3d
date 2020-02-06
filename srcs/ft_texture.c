@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:34:18 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 12:49:59 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/06 11:05:24 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ int		ft_init_texture(t_storage *storage, t_texture *texture, int w, int h)
 		return (ft_management_error(9, "Error : corruption texture west\n"));
 	if ((texture[3].ptr = mlx_xpm_file_to_image(storage->mlx->ptr, storage->info->east_t, &w, &h)) == NULL)
 		return (ft_management_error(9, "Error : corruption texture east\n"));
-	texture[4].ptr = NULL;
+	if ((texture[4].ptr = mlx_xpm_file_to_image(storage->mlx->ptr, storage->info->sprite_t, &w, &h)) == NULL)
+		return (ft_management_error(9, "Error : corruption texture sprite\n"));
+	texture[5].ptr = NULL;
 	texture[0].img = mlx_get_data_addr(texture[0].ptr, &texture[0].bpixel, &texture[0].size_line, &texture[0].endian);
 	if (texture[0].img == NULL)
 		return (ft_management_error(9, "Error : corruption texture north\n"));
@@ -90,8 +92,11 @@ int		ft_init_texture(t_storage *storage, t_texture *texture, int w, int h)
 	texture[3].img = mlx_get_data_addr(texture[3].ptr, &texture[3].bpixel, &texture[3].size_line, &texture[3].endian);
 	if (texture[3].img == NULL)
 		return (ft_management_error(9, "Error : corruption texture east\n"));
+	texture[4].img = mlx_get_data_addr(texture[4].ptr, &texture[4].bpixel, &texture[4].size_line, &texture[4].endian);
+	if (texture[4].img == NULL)
+		return (ft_management_error(9, "Error : corruption texture sprite\n"));
 	storage->texture = texture;
-	return (0);
+	return (1);
 }
 
 void	ft_init_value(t_storage *storage, t_text_info *text_info, t_ray *ray)

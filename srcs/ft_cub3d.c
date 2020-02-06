@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 16:47:58 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/06 14:16:52 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_expose(t_storage *s)
 	while (i < s->info->rx * (s->info->ry))
 		*(int *)&s->mlx->data_img[i++ * s->mlx->bpixel] = s->info->colorf;
 	ft_raycaster(s, s->ray);
-	ft_management_sprite(s, s->info->sprite, s->info->sprite_nb);
+	ft_management_sprite(s, s->sprite, s->info->sprite_nb);
 	ft_draw_mini_map(s);
 	ft_player_pos_cam(s, s->player);
 	mlx_put_image_to_window(s->mlx->ptr, s->mlx->win, s->mlx->img, 0, 0);
@@ -43,26 +43,25 @@ int		ft_management_program(t_info *map, t_mlx *mlx)
 	t_player	player;
 	t_ray		ray;
 	t_storage	storage;
-	t_texture	texture[5];
+	t_texture	texture[6];
 
-	printf("sprite %d\n", map->sprite_nb);
-	printf("sprite 1x :%f\n", map->sprite[0].x);
-	printf("sprite 1y :%f\n", map->sprite[0].y);
+	ft_get_pos_sprite(map, &storage);
 	ft_init_struct_move(&move);
 	ft_init_struct_player(&player);
 	ft_init_struct_ray(&ray);
+	storage.save = 0;
 	storage.info = map;
 	storage.mlx = mlx;
 	storage.player = &player;
 	storage.move = &move;
 	storage.ray = &ray;
 	ft_init_pos_player(&storage, &player);
-	storage.save = 0;
 	if ((mlx->ptr = mlx_init()) == NULL)
 		return (printf("init fail"));
 	if (!(mlx->win = mlx_new_window(mlx->ptr, map->rx, map->ry, "Cub3d")))
 		return (printf("windows fail"));
-	ft_init_texture(&storage, texture, 64, 64);
+	if ((ft_init_texture(&storage, texture, 64, 64) == 0))
+		return (0);
 	mlx_hook(mlx->win, KEYPRESS_EVENT, KEYPRESS_MASK, ft_keypress, &move);
 	mlx_hook(mlx->win, KEYRELEASE_EVENT, KEYRELEASE_MASK, ft_keyrelease, &move);
 	mlx_loop_hook(mlx->ptr, ft_expose, &storage);
@@ -79,7 +78,6 @@ int		ft_init_program(int save, char **av, t_mlx mlx)
 		return (0);
 	ft_check_len_map(&info_map);
 	ft_get_sprite_nb(&info_map);
-	ft_get_pos_sprite(&info_map);
 	if (save == 1)
 		ft_save(&info_map, &mlx);
 	else
