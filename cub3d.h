@@ -35,11 +35,12 @@ typedef struct		s_sprite
 {
 	double	x;
 	double	y;
-	int		nb;
 }					t_sprite;
 
 typedef struct		s_sprite_info
 {
+	int		i;
+	int		nb;
 	double	x;
 	double	y;
 	double	inv_det;
