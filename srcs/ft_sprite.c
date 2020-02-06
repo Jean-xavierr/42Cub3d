@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:27:07 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/06 16:05:02 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:41:34 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	ft_sprite_texture(t_storage *s, t_sprite_info *s_i)
 		//	;
 		while (y < s_i->drawend_y && s_i->transformy > 0 && s_i->transformy < s->zbuffer[stripe])
 		{
-				d =  y * 256 - s->info->ry * 128 + s_i->height * 128;
-				s_i->texy = ((d * s_i->texheight) / s_i->height) / 256;
-				if (s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8] != 0)
-					ft_memcpy(s->mlx->data_img + 4 * s->info->rx * s_i->drawstart_y + s_i->drawstart_x * 4, &s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8], sizeof (int));
-				y++;
+			d =  y * 256 - s->info->ry * 128 + s_i->height * 128;
+			s_i->texy = ((d * s_i->texheight) / s_i->height) / 256;
+			if (s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8] != 0)
+				ft_memcpy(s->mlx->data_img + 4 * s->info->rx * s_i->drawstart_y + s_i->drawstart_x * 4, &s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8], sizeof (int));
+			y++;
 		}
 		stripe++;
 	}
@@ -107,12 +107,12 @@ void	ft_sort_sprites(int	*sprite_order, double *sprite_distance, int sprite_nb)
 	}
 }
 
-void	ft_test_sprite(t_storage *s, t_sprite *sprite, int sprite_nb, int *sprite_order, double *sprite_distance)
+void	ft_init_sprite(t_storage *s, t_sprite *sprite, int *sprite_order, double *sprite_distance)
 {	
 	int		i;
 	
 	i = 0;
-	while (i < sprite_nb)
+	while (i < sprite->nb)
 	{
 		sprite_distance[i] = ((s->player->posX - sprite[i].x) * (s->player->posX - sprite[i].x) + (s->player->posY - sprite[i].y) * (s->player->posY - sprite[i].y));
 		sprite_order[i] = i;
@@ -120,7 +120,7 @@ void	ft_test_sprite(t_storage *s, t_sprite *sprite, int sprite_nb, int *sprite_o
 		printf("distance  %f\n", sprite_distance[i]);
 		i++;
 	}
-	ft_sort_sprites(sprite_order, sprite_distance, sprite_nb);
+	ft_sort_sprites(sprite_order, sprite_distance, sprite->nb);
 }
 
 
@@ -130,10 +130,11 @@ void	ft_management_sprite(t_storage *s, t_sprite *sprite, int sprite_nb)
 	int		sprite_order[sprite_nb];
 	double	sprite_distance[sprite_nb];
 
-	ft_test_sprite(s, sprite, sprite_nb, sprite_order, sprite_distance);
 	i = sprite_nb - 1;
+	sprite->nb = sprite_nb;
+	ft_init_sprite(s, sprite, sprite_order, sprite_distance);
 	while (i >= 0)
-	{
+	{	
 		ft_draw_sprite(sprite, sprite_order, s, i);
 		i--;
 	}
