@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/06 16:36:19 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 10:28:26 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int		ft_expose(t_storage *s)
 		*(int *)&s->mlx->data_img[i++ * s->mlx->bpixel] = s->info->colorf;
 	ft_raycaster(s, s->ray);
 	ft_management_sprite(s, s->sprite, s->info->sprite_nb);
+	free(s->zbuffer);
 	ft_draw_mini_map(s);
-	ft_player_pos_cam(s, s->player);
+	ft_player_pos_cam(s, s->player);	
 	mlx_put_image_to_window(s->mlx->ptr, s->mlx->win, s->mlx->img, 0, 0);
 	if (s->save == 0)
 		mlx_destroy_image(s->mlx->ptr, s->mlx->img);

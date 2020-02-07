@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/06 16:28:25 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 11:44:37 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ typedef	struct		s_info
 
 typedef struct		s_player
 {
-	double	posY;
-	double	posX;
+	float	posY;
+	float	posX;
 	float	x;
 	float	y;
 	double	dirX;
@@ -97,8 +97,8 @@ typedef struct		s_mlx
 {
 	void	*ptr;
 	void	*win;
-	void	*img;
-	void	*data_img;
+	char	*img;
+	char	*data_img;
 	int		bpixel;
 	int		size_line;
 	int		endian;

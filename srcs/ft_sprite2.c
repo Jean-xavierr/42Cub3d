@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:27:07 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/06 16:41:34 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 11:48:13 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,38 @@ void	ft_sprite_texture(t_storage *s, t_sprite_info *s_i)
 	int	y;
 	int	d;
 
-	stripe = s_i->drawstart_x;
+	stripe = s_i->drawstart_x;	
+
 	while (stripe < s_i->drawend_x)
 	{
 		s_i->texx = (int)((256 * (stripe - (-s_i->width / 2 + s_i->screen_x)) * s_i->texwidth / s_i->width) / 256);
+			y = s_i->drawstart_y;	
+	/*	printf("drawstarty %d\n", s_i->drawstart_y);
+		printf("drawstartx %d\n", s_i->drawstart_x);	
 		printf("transformy %g\n", s_i->transformy);
 		printf("stripe %d\n", stripe);
-		printf("zbuffer %g\n", s->zbuffer[stripe]);
-		y = s_i->drawstart_y;
-		//while (1)
+		printf("zbuffer %g\n", s->zbuffer[stripe]);*/
+	//	while (1)
 		//	;
 		while (y < s_i->drawend_y && s_i->transformy > 0 && s_i->transformy < s->zbuffer[stripe])
 		{
 			d =  y * 256 - s->info->ry * 128 + s_i->height * 128;
 			s_i->texy = ((d * s_i->texheight) / s_i->height) / 256;
+		//	printf("d = %d\n", d);
+		//	printf("texxy %d\n", s_i->texy);
 			if (s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8] != 0)
-				ft_memcpy(s->mlx->data_img + 4 * s->info->rx * s_i->drawstart_y + s_i->drawstart_x * 4, &s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8], sizeof (int));
+			{
+				//printf("test 1: %s\n", s->mlx->data_img + 4 * s->info->rx * y + stripe * 4);
+				ft_memcpy(s->mlx->data_img + 4 * s->info->rx * y + stripe * 4, &s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8], sizeof (int));
+				/*printf("drawstarty %d\n", y);
+				printf("drawstartx %d\n", stripe);
+				printf("s_i->texx %d\n", s_i->texx);
+				printf("test 2: %s\n", &s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line + s_i->texx % 64 * s->texture[4].bpixel / 8]);
+				printf("test 3: %s\n", s->mlx->data_img + 4 * s->info->rx * y + stripe * 4);
+				//while (1)
+				//	;*/
+			}
+		//		printf("texy %d\n", s_i->texy);
 			y++;
 		}
 		stripe++;
@@ -45,8 +61,8 @@ void	ft_draw_sprite(t_sprite_info *s_i, t_sprite *sprite, int *sprite_order, t_s
 
 	s_i->texwidth = 64;
 	s_i->texheight = 64;
-	s_i->x = sprite[sprite_order[i]].x - (int)s->player->posX;
-	s_i->y = sprite[sprite_order[i]].y - (int)s->player->posY;
+	s_i->x = sprite[sprite_order[s_i->i]].x - (int)s->player->posX;
+	s_i->y = sprite[sprite_order[s_i->i]].y - (int)s->player->posY;
 	s_i->inv_det = 1.0 / (s->ray->planeX * s->player->dirY - s->player->dirX * s->ray->planeY);
 	/*	printf("posX %f\n", s->player->posX);
 		printf("1X %f\n", sprite[sprite_order[i]].x);
@@ -61,7 +77,7 @@ void	ft_draw_sprite(t_sprite_info *s_i, t_sprite *sprite, int *sprite_order, t_s
 	s_i->transformx = s_i->inv_det * (s->player->dirY * s_i->x - s->player->dirX * s_i->y);
 	s_i->transformy = s_i->inv_det * (-s->ray->planeY * s_i->x + s->ray->planeX * s_i->y);
 	s_i->screen_x = (int)((s->info->rx / 2) * (1 + s_i->transformx / s_i->transformy));
-	s_i.height = abs((int)(s->info->ry / (s_i.transformy)));
+	s_i->height = abs((int)(s->info->ry / (s_i->transformy)));
 	s_i->drawstart_y = -s_i->height / 2 + s->info->ry / 2;
 	if (s_i->drawstart_y < 0)
 		s_i->drawstart_y = 0;
@@ -75,11 +91,12 @@ void	ft_draw_sprite(t_sprite_info *s_i, t_sprite *sprite, int *sprite_order, t_s
 	s_i->drawend_x = s_i->width / 2 + s_i->screen_x;
 	if (s_i->drawend_x >= s->info->rx)
 		s_i->drawend_x = s->info->rx - 1;
-	printf("transformy %g\n", s_i->transformy);	
+/*	printf("transformy %g\n", s_i->transformy);	
 	printf("drawendx %d\n", s_i->drawend_x);
+	printf("drawendy %d\n", s_i->drawend_y);
 	printf("screen %d\n", s_i->screen_x);
-	//	while (1)
-	//		;
+	while (1)
+			;*/
 }
 
 void	ft_sort_sprites(int	*sprite_order, double *sprite_distance, int sprite_nb)
@@ -110,15 +127,15 @@ void	ft_init_sprite(t_storage *s, t_sprite *sprite, int *sprite_order, double *s
 	int		i;
 	
 	i = 0;
-	while (i < sprite->nb)
+	while (i < s->info->sprite_nb)
 	{
 		sprite_distance[i] = ((s->player->posX - sprite[i].x) * (s->player->posX - sprite[i].x) + (s->player->posY - sprite[i].y) * (s->player->posY - sprite[i].y));
 		sprite_order[i] = i;
-		printf("order %d\n", sprite_order[i]);	
-		printf("distance  %f\n", sprite_distance[i]);
+		//printf("order %d\n", sprite_order[i]);	
+		//printf("distance  %f\n", sprite_distance[i]);
 		i++;
 	}
-	ft_sort_sprites(sprite_order, sprite_distance, sprite->nb);
+	ft_sort_sprites(sprite_order, sprite_distance, s->info->sprite_nb);
 }
 
 
@@ -132,8 +149,8 @@ void	ft_management_sprite(t_storage *s, t_sprite *sprite, int sprite_nb)
 	s_i.i = sprite_nb - 1;
 	while (s_i.i >= 0)
 	{	
-		ft_draw_sprite(s_i, sprite, sprite_order, s);
+		ft_draw_sprite(&s_i, sprite, sprite_order, s);
 		ft_sprite_texture(s, &s_i);
-		i--;
+		s_i.i--;
 	}
 }
