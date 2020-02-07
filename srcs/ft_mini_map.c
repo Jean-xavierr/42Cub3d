@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:05:20 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 13:50:31 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:46:34 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	ft_draw_mini_map(t_storage *storage)
 		{
 			if (storage->info->map[y][x] == '1')
 				ft_color_wall_mini_map(storage, y, x, 000000);
-			else if (storage->info->map[y][x] == '0' || storage->info->map[y][x] == '2')
+			else if (storage->info->map[y][x] == '0' ||
+			storage->info->map[y][x] == '2')
 				ft_color_wall_mini_map(storage, y, x, 16777215);
 			x++;
 		}

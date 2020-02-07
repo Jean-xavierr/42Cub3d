@@ -6,13 +6,13 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:09 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 12:48:14 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 16:19:59 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		ft_read_map(char *s, t_info *info_map)
+int		ft_read_info(char *s, t_info *info_map)
 {
 	int		i;
 	int		fd;
@@ -30,7 +30,7 @@ int		ft_read_map(char *s, t_info *info_map)
 		if (!ft_get_info_map(line, info_map))
 			return (0);
 		free(line);
-	}	
+	}
 	line = ft_strdup_map(line);
 	map_tmp = ft_strjoin_point(map_tmp, line);
 	free(line);
@@ -43,15 +43,13 @@ int		ft_read_map(char *s, t_info *info_map)
 	free(line);
 	info_map->map = ft_split(map_tmp, '.');
 	free(map_tmp);
-	i = 0;
-	while (info_map->map[i])
-		printf("[%s]\n", info_map->map[i++]);
 	return (0);
 }
 
-int			ft_read_management(char *s, t_info *info_map)
+int		ft_read_management(char *s, t_info *info_map)
 {
 	t_len_map	len;
+
 	if (ft_check_extension(s) == 0)
 	{
 		ft_management_error(1, "");
@@ -59,7 +57,7 @@ int			ft_read_management(char *s, t_info *info_map)
 	}
 	else
 	{
-		ft_read_map(s, info_map);
+		ft_read_info(s, info_map);
 		if (!ft_parse_management(info_map, &len))
 			return (0);
 	}

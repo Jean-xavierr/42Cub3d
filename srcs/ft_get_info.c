@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:49:26 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 12:58:05 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:07:30 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ int		ft_convert_rgb_to_integer(char *s)
 		if ((s[i] == '-' || s[i] == '+') || (s[i] >= '0' && s[i] <= '9'))
 		{
 			nb[n++] = ft_atoi(&s[i]);
-			if (s[i] == '-' || s[i] == '+')
-				i++;
-			while (s[i] >= '0' && s[i] <= '9')
-				i++;
+			i = ft_upgrade_i(s, i);
 		}
 		else
 			i++;
@@ -68,10 +65,8 @@ int		ft_convert_rgb_to_integer(char *s)
 			break ;
 		}
 	}
-	if (nb[0] > 255 || nb[1] > 255 || nb[2] > 255)
+	if ((nb[n] = ft_verif_rgb_is_valid(nb, n)) == 0)
 		return (0);
-	else
-		nb[n] = 65536 * nb[0] + 256 * nb[1] + nb[2];
 	return (nb[n]);
 }
 
@@ -97,9 +92,6 @@ int		ft_get_info_map(char *s, t_info *info_map)
 	else if (s[0] == '\n' || s[0] == '\0')
 		return (1);
 	else
-	{
-		ft_management_error(3, s);
-		return (0);
-	}
+		return (ft_management_error(3, s));
 	return (1);
 }

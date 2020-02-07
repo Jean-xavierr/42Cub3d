@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:47:58 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 14:25:03 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:48:00 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_move_player_mini_map(t_storage *s)
 {
 	s->player->x = (int)(s->player->pos_x * ((s->info->rx / 3) /
 	s->info->len_x));
-	s->player->y = (int)(s->player->pos_y * ((s->info->ry / 3) / s->info->len_y))
-	* s->mlx->size_line / 4;
+	s->player->y = (int)(s->player->pos_y * ((s->info->ry / 3) /
+	s->info->len_y)) * s->mlx->size_line / 4;
 	*(int *)(&s->mlx->data_img[(int)(s->player->x + s->player->y + 1) *
 	4]) = 255;
 	*(int *)(&s->mlx->data_img[(int)(s->player->x + s->player->y - 1) *
@@ -58,24 +58,24 @@ void	ft_player_pos_dir(t_storage *s, t_player *p)
 	if (s->move->turn_left == 1)
 	{
 		old_dir_x = p->dir_x;
-		p->dir_x = p->dir_x * cos(-p->rot_speed) - p->dir_y * sin(-p->rot_speed);
-		p->dir_y = old_dir_x * sin(-p->rot_speed) + p->dir_y * cos(-p->rot_speed);
+		p->dir_x = p->dir_x * cos(-p->rot_s) - p->dir_y * sin(-p->rot_s);
+		p->dir_y = old_dir_x * sin(-p->rot_s) + p->dir_y * cos(-p->rot_s);
 		old_plane_x = s->ray->plane_y;
-		s->ray->plane_y = s->ray->plane_y * cos(p->rot_speed) - s->ray->plane_x
-		* sin(p->rot_speed);
-		s->ray->plane_x = old_plane_x * sin(p->rot_speed) + s->ray->plane_x
-		* cos(p->rot_speed);
+		s->ray->plane_y = s->ray->plane_y * cos(p->rot_s) - s->ray->plane_x
+		* sin(p->rot_s);
+		s->ray->plane_x = old_plane_x * sin(p->rot_s) + s->ray->plane_x
+		* cos(p->rot_s);
 	}
 	if (s->move->turn_right == 1)
 	{
 		old_dir_x = p->dir_x;
-		p->dir_x = p->dir_x * cos(p->rot_speed) - p->dir_y * sin(p->rot_speed);
-		p->dir_y = old_dir_x * sin(p->rot_speed) + p->dir_y * cos(p->rot_speed);
+		p->dir_x = p->dir_x * cos(p->rot_s) - p->dir_y * sin(p->rot_s);
+		p->dir_y = old_dir_x * sin(p->rot_s) + p->dir_y * cos(p->rot_s);
 		old_plane_x = s->ray->plane_y;
-		s->ray->plane_y = s->ray->plane_y * cos(-p->rot_speed) - s->ray->plane_x
-		* sin(-p->rot_speed);
-		s->ray->plane_x = old_plane_x * sin(-p->rot_speed) + s->ray->plane_x
-		* cos(-p->rot_speed);
+		s->ray->plane_y = s->ray->plane_y * cos(-p->rot_s) - s->ray->plane_x
+		* sin(-p->rot_s);
+		s->ray->plane_x = old_plane_x * sin(-p->rot_s) + s->ray->plane_x
+		* cos(-p->rot_s);
 	}
 }
 

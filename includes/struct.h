@@ -72,7 +72,7 @@ typedef struct		s_player
 	double	dir_x;
 	double	dir_y;
 	double	ms;
-	double	rot_speed;
+	double	rot_s;
 }					t_player;
 
 typedef struct		s_mlx

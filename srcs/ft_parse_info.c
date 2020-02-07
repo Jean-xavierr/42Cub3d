@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:45:56 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/05 16:04:44 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:50:01 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int		ft_check_map(t_info *info_map)
 	int	x;
 
 	i = 0;
-	x = 0;
 	while (info_map->map[i])
 	{
 		x = 0;

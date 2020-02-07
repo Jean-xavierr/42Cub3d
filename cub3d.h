@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 14:19:56 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 16:59:57 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,20 @@ int		ft_init_texture(t_storage *storage, t_texture *texture, int w, int h);
 void	ft_management_texture(t_storage *storage, t_ray *ray, int x);
 
 /*
+** ft_draw_wall_color
+*/
+void	ft_draw_wall_color(t_storage *storage, t_ray *ray, int x);
+
+/*
+** ft_draw_wall_texture
+*/
+void	ft_draw_wall_texture_sn(t_storage *s, t_texture *texture,
+t_text_info *text_i, int x);
+void	ft_draw_wall_texture_ew(t_storage *s, t_texture *texture,
+t_text_info *text_i, int x);
+
+
+/*
 ** ft_memcpy
 */
 void	*ft_memcpy(void *dst, const void *src, int n);
@@ -152,6 +166,8 @@ void	ft_putstr(char *s);
 int		ft_is_wall(char c);
 int		ft_atoi(char *s);
 char	*ft_strjoin_point(char *s1, char *s2);
+int		ft_upgrade_i(char *s, int i);
+int		ft_verif_rgb_is_valid(int nb[4], int n);
 
 /*
 ** ft_strdup_map.c

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:00:07 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 13:15:18 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:51:18 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_get_sprite_nb(t_info *info_map)
 {
 	int		y;
 	int		x;
-	
+
 	y = 0;
 	while (info_map->map[y])
 	{
@@ -50,7 +50,7 @@ void	ft_get_pos_sprite(t_info *info_map, t_storage *storage)
 	int			y;
 	int			x;
 	int			n;
-		
+
 	y = 0;
 	n = 0;
 	while (info_map->map[y])
