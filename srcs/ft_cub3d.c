@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 10:28:26 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:57:16 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		ft_management_program(t_info *map, t_mlx *mlx)
 		return (0);
 	mlx_hook(mlx->win, KEYPRESS_EVENT, KEYPRESS_MASK, ft_keypress, &move);
 	mlx_hook(mlx->win, KEYRELEASE_EVENT, KEYRELEASE_MASK, ft_keyrelease, &move);
+	mlx_hook(mlx->win, 17, 0, ft_exit_prog, &storage);
 	mlx_loop_hook(mlx->ptr, ft_expose, &storage);
 	mlx_loop(mlx->ptr);
 	return (0);
