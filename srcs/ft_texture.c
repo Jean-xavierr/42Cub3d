@@ -17,7 +17,7 @@ void	ft_draw_wall_texture(t_storage *storage, t_texture *texture, t_text_info *t
 {
 	if (ray->side == 1)
 	{
-		if (ray->raydirY >= 0)
+		if (ray->raydir_y >= 0)
 		{
 			while (text_info->drawstart < text_info->drawend)
 			{
@@ -41,7 +41,7 @@ void	ft_draw_wall_texture(t_storage *storage, t_texture *texture, t_text_info *t
 	}
 	else
 	{
-		if (ray->raydirX >= 0)
+		if (ray->raydir_x >= 0)
 		{
 			while (text_info->drawstart < text_info->drawend)
 			{
@@ -111,14 +111,14 @@ void	ft_init_value(t_storage *storage, t_text_info *text_info, t_ray *ray)
 	if (text_info->drawend >= storage->info->ry)
 		text_info->drawend = storage->info->ry - 1;	
 	if (ray->side == 0)
-		text_info->wallx = storage->player->posY + ray->perpwalldist * ray->raydirY;
+		text_info->wallx = storage->player->pos_y + ray->perpwalldist * ray->raydir_y;
 	else
-		text_info->wallx = storage->player->posX + ray->perpwalldist * ray->raydirX;
+		text_info->wallx = storage->player->pos_x + ray->perpwalldist * ray->raydir_x;
 	text_info->wallx -= floor(text_info->wallx);
 	text_info->x = (int)(text_info->wallx * (double)text_info->width);
-	if (ray->side == 0 && ray->raydirX > 0)
+	if (ray->side == 0 && ray->raydir_x > 0)
 		text_info->x = text_info->width - text_info->x - 1;
-	if (ray->side == 1 && ray->raydirY < 0)
+	if (ray->side == 1 && ray->raydir_y < 0)
 		text_info->x = text_info->width - text_info->x - 1;
 }
 

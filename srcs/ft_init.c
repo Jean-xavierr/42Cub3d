@@ -45,50 +45,50 @@ void	ft_init_struct_move(t_move *move)
 
 void	ft_init_struct_player(t_player *player)
 {
-	player->posY = 0;
-	player->posX = 0;
+	player->pos_y = 0;
+	player->pos_x = 0;
 	player->x = 0;
 	player->y = 0;
-	player->dirX = 0;
-	player->dirY = 0;
+	player->dir_x = 0;
+	player->dir_y = 0;
 	player->ms = 0.07;
 	player->rot_speed = 0.06;
 }
 
 void	ft_init_pos_player(t_storage *storage, t_player *player)
 {
-	player->posY = storage->info->player_y + 0.5;
-	player->posX = storage->info->player_x + 0.5;
+	player->pos_y = storage->info->player_y + 0.5;
+	player->pos_x = storage->info->player_x + 0.5;
 	if (storage->info->player_start == 'N')
 	{
-		player->dirX = 0;
-		player->dirY = -1;
+		player->dir_x = 0;
+		player->dir_y = -1;
 	}
 	if (storage->info->player_start == 'S')
 	{
-		player->dirX = 0;
-		player->dirY = 1;
-		storage->ray->planeX = -0.66;
+		player->dir_x = 0;
+		player->dir_y = 1;
+		storage->ray->plane_x = -0.66;
 	}
 	if (storage->info->player_start == 'W')
 	{
-		player->dirX = -1;
-		player->dirY = 0;
-		storage->ray->planeX = 0;
-		storage->ray->planeY = -0.66;
+		player->dir_x = -1;
+		player->dir_y = 0;
+		storage->ray->plane_x = 0;
+		storage->ray->plane_y = -0.66;
 	}
 	if (storage->info->player_start == 'E')
 	{
-		player->dirX = 1;
-		player->dirY = 0;
-		storage->ray->planeX = 0;
-		storage->ray->planeY = 0.66;
+		player->dir_x = 1;
+		player->dir_y = 0;
+		storage->ray->plane_x = 0;
+		storage->ray->plane_y = 0.66;
 	}
 }
 
 void	ft_init_struct_ray(t_ray *ray)
 {
-	ray->planeX = 0.66;
-	ray->planeY = 0;
+	ray->plane_x = 0.66;
+	ray->plane_y = 0;
 	ray->hit = 0;
 }

@@ -61,10 +61,10 @@ void	ft_draw_sprite(t_sprite_info *s_i, t_sprite *sprite, int *sprite_order, t_s
 
 	s_i->texwidth = 64;
 	s_i->texheight = 64;
-	s_i->x = sprite[sprite_order[s_i->i]].x - s->player->posX;
-	s_i->y = sprite[sprite_order[s_i->i]].y - s->player->posY;
-	s_i->inv_det = 1.0 / (s->ray->planeX * s->player->dirY - s->player->dirX * s->ray->planeY);
-	printf("posX %f\n", s->player->posX);
+	s_i->x = sprite[sprite_order[s_i->i]].x - s->player->pos_x;
+	s_i->y = sprite[sprite_order[s_i->i]].y - s->player->pos_y;
+	s_i->inv_det = 1.0 / (s->ray->plane_x * s->player->dir_y - s->player->dir_x * s->ray->plane_y);
+	printf("pos_x %f\n", s->player->pos_x);
 	printf("1X %f\n", sprite[sprite_order[s_i->i]].x);
 	printf("1Y %f\n", sprite[sprite_order[s_i->i]].y);
 	printf("invdet %g\n", s_i->inv_det);
@@ -72,8 +72,8 @@ void	ft_draw_sprite(t_sprite_info *s_i, t_sprite *sprite, int *sprite_order, t_s
 	printf("y %g\n", s_i->y);
 	printf("order %d\n", sprite_order[s_i->i]);
 	printf("sprorder %f\n", sprite[s_i->i].x);
-	s_i->transformx = s_i->inv_det * (s->player->dirY * s_i->x - s->player->dirX * s_i->y);
-	s_i->transformy = s_i->inv_det * (-s->ray->planeY * s_i->x + s->ray->planeX * s_i->y);
+	s_i->transformx = s_i->inv_det * (s->player->dir_y * s_i->x - s->player->dir_x * s_i->y);
+	s_i->transformy = s_i->inv_det * (-s->ray->plane_y * s_i->x + s->ray->plane_x * s_i->y);
 	s_i->screen_x = (int)((s->info->rx / 2) * (1 + s_i->transformx / s_i->transformy));
 	s_i->height = abs((int)(s->info->ry / (s_i->transformy)));
 	s_i->drawstart_y = -s_i->height / 2 + s->info->ry / 2;
@@ -127,10 +127,10 @@ void	ft_init_sprite(t_storage *s, t_sprite *sprite, int *sprite_order, double *s
 	i = 0;
 	while (i < s->info->sprite_nb)
 	{
-		sprite_distance[i] = ((s->player->posX - sprite[i].x) * (s->player->posX - sprite[i].x) + (s->player->posY - sprite[i].y) * (s->player->posY - sprite[i].y));
+		sprite_distance[i] = ((s->player->pos_x - sprite[i].x) * (s->player->pos_x - sprite[i].x) + (s->player->pos_y - sprite[i].y) * (s->player->pos_y - sprite[i].y));
 		sprite_order[i] = i;
-	/*	printf("p1.x %f\n", s->player->posX);
-		printf("p1.y %f\n", s->player->posY);
+	/*	printf("p1.x %f\n", s->player->pos_x);
+		printf("p1.y %f\n", s->player->pos_y);
 		printf("spr.x %f\n", sprite[i].x);
 		printf("spr.y %f\n", sprite[i].y);
 		printf("order %d\n", sprite_order[i]);	

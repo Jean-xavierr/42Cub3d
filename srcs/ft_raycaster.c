@@ -14,7 +14,7 @@
 
 void	ft_draw_south_north(t_storage *storage, t_ray *ray, int drawstart, int drawend, int x)
 {
-	if (ray->raydirY >= 0)
+	if (ray->raydir_y >= 0)
 	{
 		while (drawstart < drawend)
 		{
@@ -36,7 +36,7 @@ void	ft_draw_south_north(t_storage *storage, t_ray *ray, int drawstart, int draw
 
 void	ft_draw_west_east(t_storage *storage, t_ray *ray, int drawstart, int drawend, int x)
 {
-	if (ray->raydirX >= 0)
+	if (ray->raydir_x >= 0)
 	{
 		while (drawstart < drawend)
 		{
@@ -84,55 +84,55 @@ void	ft_raycaster(t_storage *storage, t_ray *ray)
 	storage->zbuffer = malloc(sizeof(double) * storage->info->rx);
 	while (x < storage->info->rx)
 	{
-		ray->camX = 2 * x / (double)storage->info->rx - 1;
-		ray->raydirX = storage->player->dirX + ray->planeX * ray->camX;
-		ray->raydirY = storage->player->dirY + ray->planeY * ray->camX;
-		ray->mapX = (int)storage->player->posX;
-		ray->mapY = (int)storage->player->posY;
-		ray->deltadistX = fabs(1 / ray->raydirX);
-		ray->deltadistY= fabs(1 / ray->raydirY);
-		if (ray->raydirX < 0)
+		ray->cam_x = 2 * x / (double)storage->info->rx - 1;
+		ray->raydir_x = storage->player->dir_x + ray->plane_x * ray->cam_x;
+		ray->raydir_y = storage->player->dir_y + ray->plane_y * ray->cam_x;
+		ray->map_x = (int)storage->player->pos_x;
+		ray->map_y = (int)storage->player->pos_y;
+		ray->deltadist_x = fabs(1 / ray->raydir_x);
+		ray->deltadist_y= fabs(1 / ray->raydir_y);
+		if (ray->raydir_x < 0)
 		{
-			ray->stepX = -1;
-			ray->sidedistX = (storage->player->posX - ray->mapX) * ray->deltadistX;
+			ray->step_x = -1;
+			ray->sidedist_x = (storage->player->pos_x - ray->map_x) * ray->deltadist_x;
 		}
 		else
 		{
-			ray->stepX = 1;
-			ray->sidedistX = (ray->mapX + 1.0 - storage->player->posX) * ray->deltadistX;
+			ray->step_x = 1;
+			ray->sidedist_x = (ray->map_x + 1.0 - storage->player->pos_x) * ray->deltadist_x;
 		}
-		if (ray->raydirY < 0)
+		if (ray->raydir_y < 0)
 		{
-			ray->stepY = -1;
-			ray->sidedistY = (storage->player->posY - ray->mapY) * ray->deltadistY;
+			ray->step_y = -1;
+			ray->sidedist_y = (storage->player->pos_y - ray->map_y) * ray->deltadist_y;
 		}
 		else
 		{
-			ray->stepY = 1;
-			ray->sidedistY = (ray->mapY + 1.0 - storage->player->posY) * ray->deltadistY;
+			ray->step_y = 1;
+			ray->sidedist_y = (ray->map_y + 1.0 - storage->player->pos_y) * ray->deltadist_y;
 		}
 		while (ray->hit == 0)
 		{
-			if (ray->sidedistX < ray->sidedistY)
+			if (ray->sidedist_x < ray->sidedist_y)
 			{
-				ray->sidedistX += ray->deltadistX;
-				ray->mapX += ray->stepX;
+				ray->sidedist_x += ray->deltadist_x;
+				ray->map_x += ray->step_x;
 				ray->side = 0;
 			}
 			else
 			{
-				ray->sidedistY += ray->deltadistY;
-				ray->mapY += ray->stepY;
+				ray->sidedist_y += ray->deltadist_y;
+				ray->map_y += ray->step_y;
 				ray->side = 1;
 			}
-			if (storage->info->map[ray->mapY][ray->mapX] == '1')
+			if (storage->info->map[ray->map_y][ray->map_x] == '1')
 				ray->hit = 1;
 		}
 		if (ray->side == 0)
-			ray->perpwalldist = (ray->mapX - storage->player->posX + (1 - ray->stepX) / 2) / ray->raydirX;
+			ray->perpwalldist = (ray->map_x - storage->player->pos_x + (1 - ray->step_x) / 2) / ray->raydir_x;
 		else
 		{
-			ray->perpwalldist = (ray->mapY - storage->player->posY + (1 - ray->stepY) / 2) / ray->raydirY;
+			ray->perpwalldist = (ray->map_y - storage->player->pos_y + (1 - ray->step_y) / 2) / ray->raydir_y;
 		}
 		storage->zbuffer[x] = ray->perpwalldist;
 		if (storage->move->texture == 0)

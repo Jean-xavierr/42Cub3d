@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 13:57:16 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 14:28:08 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_expose(t_storage *s)
 	ft_management_sprite(s, s->sprite, s->info->sprite_nb);
 	free(s->zbuffer);
 	ft_draw_mini_map(s);
-	ft_player_pos_cam(s, s->player);	
+	ft_player_pos_cam(s, s->player);
 	mlx_put_image_to_window(s->mlx->ptr, s->mlx->win, s->mlx->img, 0, 0);
 	if (s->save == 0)
 		mlx_destroy_image(s->mlx->ptr, s->mlx->img);
