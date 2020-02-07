@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:00:07 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 11:37:39 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:15:18 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	ft_get_pos_sprite(t_info *info_map, t_storage *storage)
 		{
 			if (info_map->map[y][x] == '2')
 			{
-				storage->sprite[n].x = (double)x;
-				storage->sprite[n].y = (double)y;
+				storage->sprite[n].x = (double)x + 0.5;
+				storage->sprite[n].y = (double)y + 0.5;
 				n++;
 			}
 			x++;
