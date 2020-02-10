@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:59:31 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 14:27:07 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:29:04 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_sprite
 typedef struct		s_sprite_info
 {
 	int		i;
+	int		d;
 	int		nb;
 	double	x;
 	double	y;

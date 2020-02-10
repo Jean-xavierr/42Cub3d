@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 15:11:15 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:00:58 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,8 @@ int		ft_management_program(t_info *map, t_mlx *mlx)
 	ft_init_struct_move(&move);
 	ft_init_struct_player(&player);
 	ft_init_struct_ray(&ray);
-	storage.save = 0;
-	storage.info = map;
-	storage.mlx = mlx;
-	storage.player = &player;
-	storage.move = &move;
-	storage.ray = &ray;
-	player.pos_y = storage.info->player_y + 0.5;
-	player.pos_x = storage.info->player_x + 0.5;
+	ft_fill_storage(&move, &ray, &storage);
+	ft_init_storage(map, mlx, &player, &storage);
 	ft_init_pos_player(&storage, &player);
 	if ((mlx->ptr = mlx_init()) == NULL)
 		return (printf("init fail"));

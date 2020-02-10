@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_prog.c                                     :+:      :+:    :+:   */
+/*   ft_init_storage.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 14:52:34 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 10:39:42 by jereligi         ###   ########.fr       */
+/*   Created: 2020/02/10 10:51:34 by jereligi          #+#    #+#             */
+/*   Updated: 2020/02/10 11:01:53 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int					ft_exit_prog(t_storage *storage)
+void	ft_init_storage(t_info *info_map, t_mlx *mlx, t_player *player,
+t_storage *storage)
 {
-	int		y;
+	storage->save = 0;
+	storage->info = info_map;
+	storage->mlx = mlx;
+	storage->player = player;
+	player->pos_x = storage->info->player_x + 0.5;
+	player->pos_y = storage->info->player_y + 0.5;
+}
 
-	y = 0;
-	while (storage->info->map[y])
-	{
-		free(storage->info->map[y]);
-		y++;
-	}
-	free(storage->info->map[y]);
-	free(storage->info->map);
-	write(1, "FREE -> ", 8);
-	mlx_clear_window(storage->mlx->ptr, storage->mlx->win);
-	write(1, "CLEAR -> ", 9);
-	mlx_destroy_window(storage->mlx->ptr, storage->mlx->win);
-	write(1, "DESTROY \n", 7);
-	exit(0);
-	return (1);
+void	ft_fill_storage(t_move *move, t_ray *ray, t_storage *storage)
+{
+	storage->move = move;
+	storage->ray = ray;
 }

@@ -6,7 +6,7 @@
 #    By: jereligi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 16:29:40 by jereligi          #+#    #+#              #
-#    Updated: 2020/02/07 16:58:37 by jereligi         ###   ########.fr        #
+#    Updated: 2020/02/10 10:57:18 by jereligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS =	ft_cub3d.c \
 		ft_draw_wall_texture.c \
 		ft_save.c \
 		ft_sprite.c \
+		ft_init_storage.c \
 
 _SRC = $(addprefix $(PATH), $(SRCS))
 

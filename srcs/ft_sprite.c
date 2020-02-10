@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 16:27:07 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 17:09:29 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:29:28 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_sprite_texture(t_storage *s, t_sprite_info *s_i)
 {
 	int	stripe;
 	int	y;
-	int	d;
 
 	stripe = s_i->drawstart_x;
 	while (stripe < s_i->drawend_x)
@@ -27,8 +26,8 @@ void	ft_sprite_texture(t_storage *s, t_sprite_info *s_i)
 		while (y < s_i->drawend_y && s_i->transformy > 0 && s_i->transformy
 		< s->zbuffer[stripe])
 		{
-			d = y * 256 - s->info->ry * 128 + s_i->height * 128;
-			s_i->texy = ((d * s_i->texheight) / s_i->height) / 256;
+			s_i->d = y * 256 - s->info->ry * 128 + s_i->height * 128;
+			s_i->texy = ((s_i->d * s_i->texheight) / s_i->height) / 256;
 			if (s->texture[4].img[s_i->texy % 64 * s->texture[4].size_line
 			+ s_i->texx % 64 * s->texture[4].bpixel / 8] != 0)
 			{
@@ -45,8 +44,6 @@ void	ft_sprite_texture(t_storage *s, t_sprite_info *s_i)
 void	ft_draw_sprite(t_sprite_info *s_i, t_sprite *sprite, int *sprite_order,
 t_storage *s)
 {
-	s_i->texwidth = 64;
-	s_i->texheight = 64;
 	s_i->x = sprite[sprite_order[s_i->i]].x - s->player->pos_x;
 	s_i->y = sprite[sprite_order[s_i->i]].y - s->player->pos_y;
 	s_i->inv_det = 1.0 / (s->ray->plane_x * s->player->dir_y -
@@ -121,6 +118,8 @@ void	ft_management_sprite(t_storage *s, t_sprite *sprite, int sprite_nb)
 	t_sprite_info		s_i;
 
 	ft_init_sprite(s, sprite, sprite_order, sprite_distance);
+	s_i.texwidth = 64;
+	s_i.texheight = 64;
 	s_i.i = sprite_nb - 1;
 	while (s_i.i >= 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 16:59:57 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:04:15 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_draw_mini_map(t_storage *storage);
 /*
 ** ft_read_map
 */
-int		ft_read_map(char *s, t_info *info_map);
+int		ft_read_info(char *s, t_info *info_map);
 int		ft_read_management(char *s, t_info *info_map);
 
 /*
@@ -83,6 +83,13 @@ void	ft_init_struct_move(t_move *move);
 void	ft_init_struct_player(t_player *player);
 void	ft_init_struct_ray(t_ray *ray);
 void	ft_init_pos_player(t_storage *storage, t_player *player);
+
+/*
+** ft_init_storage.c
+*/
+void	ft_init_storage(t_info *info_map, t_mlx *mlx,
+t_player *player, t_storage *storage);
+void	ft_fill_storage(t_move *move, t_ray *ray, t_storage *storage);
 
 /*
 ** ft_fill_map
@@ -129,7 +136,6 @@ void	ft_draw_wall_texture_sn(t_storage *s, t_texture *texture,
 t_text_info *text_i, int x);
 void	ft_draw_wall_texture_ew(t_storage *s, t_texture *texture,
 t_text_info *text_i, int x);
-
 
 /*
 ** ft_memcpy
