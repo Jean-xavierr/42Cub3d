@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:06:09 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 10:37:23 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:25:05 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_read_info(char *s, t_info *info_map)
 		free(line);
 	}
 	ft_read_map(info_map, fd, line);
-	return (0);
+	return (1);
 }
 
 int		ft_read_management(char *s, t_info *info_map)
@@ -66,7 +66,8 @@ int		ft_read_management(char *s, t_info *info_map)
 	}
 	else
 	{
-		ft_read_info(s, info_map);
+		if ((ft_read_info(s, info_map)) == 0)
+			return (0);
 		if (!ft_parse_management(info_map, &len))
 			return (0);
 	}

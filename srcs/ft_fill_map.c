@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 10:51:59 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/07 14:40:33 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:01:57 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ void	ft_check_len_map(t_info *info_map)
 		}
 		y++;
 	}
-	printf("\ny = %d", y);
-	printf("\nlen_max = %d", len_max);
 	info_map->len_x = len_max;
 	info_map->len_y = y;
 	ft_malloc_new_map(info_map, y, len_max);

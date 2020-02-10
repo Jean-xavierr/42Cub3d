@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 11:04:15 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:46:06 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ int		ft_parse_map_line_between(t_info *info_map, t_len_map *len);
 /*
 ** ft_get_info.c
 */
-void	ft_get_resolution(char *s, t_info *info_map);
-void	ft_get_texture_path(char *s, t_info *info_map);
-void	ft_get_color(char *s, t_info *info_map);
+int		ft_get_resolution(char *s, t_info *info_map);
+int		ft_get_texture_path_north_south(char *s, t_info *info_map);
+int		ft_get_texture_path_west_east_s(char *s, t_info *info_map);
+int		ft_get_color(char *s, t_info *info_map);
 int		ft_get_info_map(char *s, t_info *info_map);
 
 /*
@@ -172,8 +173,8 @@ void	ft_putstr(char *s);
 int		ft_is_wall(char c);
 int		ft_atoi(char *s);
 char	*ft_strjoin_point(char *s1, char *s2);
-int		ft_upgrade_i(char *s, int i);
 int		ft_verif_rgb_is_valid(int nb[4], int n);
+int		ft_get_info_map_resolution(char *s, t_info *info_map);
 
 /*
 ** ft_strdup_map.c
