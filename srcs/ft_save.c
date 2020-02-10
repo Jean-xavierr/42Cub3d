@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:29 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 13:08:18 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:33:34 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void		ft_save(t_info *info_map, t_mlx *mlx)
 	ft_init_texture(&storage, texture, 64, 64);
 	ft_expose(&storage);
 	ft_write_bmp_file(&storage);
+	ft_exit_prog(&storage);
 }

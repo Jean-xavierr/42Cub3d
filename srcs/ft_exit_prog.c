@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:52:34 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 10:39:42 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:34:34 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ int					ft_exit_prog(t_storage *storage)
 	}
 	free(storage->info->map[y]);
 	free(storage->info->map);
-	write(1, "FREE -> ", 8);
 	mlx_clear_window(storage->mlx->ptr, storage->mlx->win);
-	write(1, "CLEAR -> ", 9);
 	mlx_destroy_window(storage->mlx->ptr, storage->mlx->win);
-	write(1, "DESTROY \n", 7);
 	exit(0);
 	return (1);
 }
