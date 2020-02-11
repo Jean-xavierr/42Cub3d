@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 17:04:43 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 15:25:31 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/11 14:41:01 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_information_start(int error)
 	}
 	else if (error == 2)
 		ft_putstr("Error: open(*.cub) failed\n");
-	else if (error == 10)
+	else if (error == -2)
 		ft_putstr("Error: third argument no correct, only optin --save\n");
 }
 

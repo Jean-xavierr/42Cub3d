@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:02:53 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 15:46:06 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:07:38 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 # define CUB3D_H
 
 # include <math.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <string.h>
 # include "includes/get_next_line.h"
 # include <mlx.h>
 # include "includes/struct.h"
@@ -175,6 +173,8 @@ int		ft_atoi(char *s);
 char	*ft_strjoin_point(char *s1, char *s2);
 int		ft_verif_rgb_is_valid(int nb[4], int n);
 int		ft_get_info_map_resolution(char *s, t_info *info_map);
+void	ft_free_tab(char **tab);
+int		ft_check_space_rgb(char **tab, int i);
 
 /*
 ** ft_strdup_map.c

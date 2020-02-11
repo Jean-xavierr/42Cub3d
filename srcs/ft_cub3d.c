@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:02:44 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 16:38:45 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/11 14:27:21 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ int		ft_init_program(int save, char **av, t_mlx mlx)
 		return (0);
 	ft_check_len_map(&info_map);
 	ft_get_sprite_nb(&info_map);
+	if (info_map.sprite_nb > 49)
+	{
+		ft_putstr("Errror: to much sprites");
+		return (ft_management_error(9, ", max sprite 50\n"));
+	}
 	if (save == 1)
 		ft_save(&info_map, &mlx);
 	else

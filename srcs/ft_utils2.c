@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:57:50 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 15:45:01 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:10:47 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,33 @@ int		ft_get_info_map_resolution(char *s, t_info *info_map)
 {
 	if ((ft_get_resolution(s, info_map)) == 0)
 		return (ft_management_error(10, ""));
+	return (1);
+}
+
+void	ft_free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+}
+
+int		ft_check_space_rgb(char **tab, int i)
+{
+	int	n;
+	int	valid;
+
+	n = 0;
+	valid = 0;
+	while (tab[i][n])
+	{
+		if (tab[i][n] != ' ')
+			valid = 1;
+		n++;
+	}
+	if (valid == 0)
+		return (0);
 	return (1);
 }

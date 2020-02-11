@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:49:26 by jereligi          #+#    #+#             */
-/*   Updated: 2020/02/10 15:46:24 by jereligi         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:10:21 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		ft_convert_rgb_to_integer(char *s)
 	char	**tab;
 
 	i = 0;
-	tab = ft_split(s, ',');
+	tab = ft_split(&s[1], ',');
 	while (tab[i])
 		i++;
 	if (i > 3)
@@ -63,7 +63,7 @@ int		ft_convert_rgb_to_integer(char *s)
 	i = 0;
 	while (i < 3)
 	{
-		if (tab[i] == NULL)
+		if ((tab[i] == NULL) || !ft_check_space_rgb(tab, i))
 			return (ft_management_error(4, s));
 		else
 		{
@@ -71,17 +71,22 @@ int		ft_convert_rgb_to_integer(char *s)
 			i++;
 		}
 	}
-	free(tab);
+	ft_free_tab(tab);
 	nb[i] = ft_verif_rgb_is_valid(nb, i);
 	return (nb[i]);
 }
 
 int		ft_get_color(char *s, t_info *info_map)
 {
-	if (s[0] == 'F')
+	if (s[0] == 'F' && info_map->colorf == 0)
 		info_map->colorf = ft_convert_rgb_to_integer(s);
-	else
+	else if (s[0] == 'C' && info_map->colorc == 0)
 		info_map->colorc = ft_convert_rgb_to_integer(s);
+	else
+	{
+		ft_putstr("Error: Duplicate color floor or ceil :");
+		return (ft_management_error(9, s));
+	}
 	if (info_map->colorf == -1 || info_map->colorc == -1)
 		return (0);
 	return (1);
